@@ -12,10 +12,6 @@ app.get((req, res, next) => {
     next()
 })
 
-/** ROUTES (REACT TO REQUEST) */
-// app.use((req, res) => {
-//     res.json({ message: 'welcome to the app!'})
-// })
 app.use('/api/warehouse' ,wokoutRoutes)
 
 app.listen(process.env.PORT, () => {
