@@ -3,18 +3,20 @@ dotenv.config()
 
 import express from 'express'
 import mongoose from 'mongoose'
-import wokoutRoutes from './routes/serverRoutes.js'
+import warehouseRoutes from './routes/warehouseRoutes.js'
 
 const app = express()
 
 /** MIDDLEWARE */
-app.get((req, res, next) => {
+app.use(express.json())
+
+app.use((req, res, next) => {
     console.log(req.path, res.method)
     next()
 })
 
 /** ROUTES (REACT TO REQUEST) */
-app.use('/api/warehouse' ,wokoutRoutes)
+app.use('/api/warehouse', warehouseRoutes)
 
 /** CONNECT TO DB */
 mongoose.connect(process.env.MONGO_URI, { dbName: 'warehouse' })
