@@ -12,8 +12,10 @@ app.get((req, res, next) => {
     next()
 })
 
+/** ROUTES (REACT TO REQUEST) */
 app.use('/api/warehouse' ,wokoutRoutes)
 
+/** CONNECTION (LISTEN FOR REQUEST) */
 app.listen(process.env.PORT, () => {
     console.log(`server is running on http://localhost:${process.env.PORT}`)
 })
