@@ -1,6 +1,8 @@
-import express from 'express'
 import dotenv from 'dotenv'
 dotenv.config()
+
+import express from 'express'
+import wokoutRoutes from './routes/serverRoutes.js'
 
 const app = express()
 
@@ -11,9 +13,10 @@ app.get((req, res, next) => {
 })
 
 /** ROUTES (REACT TO REQUEST) */
-app.use((req, res) => {
-    res.json({ message: 'welcome to the app!'})
-})
+// app.use((req, res) => {
+//     res.json({ message: 'welcome to the app!'})
+// })
+app.use('/api/warehouse' ,wokoutRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`server is running on http://localhost:${process.env.PORT}`)
