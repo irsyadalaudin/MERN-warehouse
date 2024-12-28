@@ -45,26 +45,50 @@ const deleteWarehouse = async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        res.status(404).json({message: 'no warehouse item matches the id!'})
+        return res.status(404).json({message: 'no warehouse item matches the id!'})
     }
 
     try {
-        const warehouse = await Warehouse.findByIdAndDelete(id)
+        const warehouse = await Warehouse.findOneAndDelete({_id:id})
 
         if (!warehouse) {
-            res.status(400).json({message: 'no such warehouse item has been deleted!'})
+            return res.status(400).json({message: 'no such warehouse item has been deleted!'})
         } else {
-            res.status(200).json(warehouse)
+            return res.status(200).json(warehouse)
         }
     } catch {
-        res.status(505).json({message: 'an occurred while deleting the warehouse item!'})
+        res.status(500).json({message: 'an occurred while deleting the warehouse item!'})
     }
 }
+
+const updateWarehouse = async (req, res) => {
+    const { id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'no warehouse item matches the id!'})
+    }
+
+    try {
+        const warehouse = await Warehouse.findOneAndUpdate({_id:id}, {
+            ...req.body
+        })
+
+        if (!warehouse) {
+            return res.status(400).json({message: 'no such warehouse item ahs been updated!'})
+        } else {
+            return res.status(200).json(warehouse)
+        }
+    } catch {
+        res.status(500).json({message: 'an occurred while updating the warehouse item!'})
+    }
+}
+
 
 
 export default {
     getWarehouses,
     getWarehouse,
     createWarehouse,
-    deleteWarehouse
+    deleteWarehouse,
+    updateWarehouse
 }

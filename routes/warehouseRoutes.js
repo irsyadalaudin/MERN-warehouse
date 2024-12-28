@@ -6,7 +6,8 @@ const {
     getWarehouses,
     getWarehouse,
     createWarehouse,
-    deleteWarehouse
+    deleteWarehouse,
+    updateWarehouse
 } = warehouseControllers
 
 const router = express.Router()
@@ -22,5 +23,8 @@ router.post('/', createWarehouse)
 
 /** DELETE A SINGLE WAREHOUSE ITEM */
 router.delete('/:id', deleteWarehouse)
+
+/** UPDATE A WAREHOUSE ITEM */
+router.patch('/:id', updateWarehouse)
 
 export default router
