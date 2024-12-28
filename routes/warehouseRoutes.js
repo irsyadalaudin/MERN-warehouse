@@ -5,7 +5,8 @@ import warehouseControllers from '../controllers/warehouseControllers.js'
 const {
     getWarehouses,
     getWarehouse,
-    createWarehouse
+    createWarehouse,
+    deleteWarehouse
 } = warehouseControllers
 
 const router = express.Router()
@@ -18,5 +19,8 @@ router.get('/:id', getWarehouse)
 
 /** CREATE A NEW WAREHOUSE ITEM */
 router.post('/', createWarehouse)
+
+/** DELETE A SINGLE WAREHOUSE ITEM */
+router.delete('/:id', deleteWarehouse)
 
 export default router

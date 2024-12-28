@@ -12,19 +12,19 @@ const getWarehouse = async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ message: 'no such warehouse!' })
+        return res.status(404).json({message: 'no warehouse item matches the id!'})
     }
 
     try {
         const warehouse = await Warehouse.findById(id)
 
         if (!warehouse) {
-            return res.status(400).json({ message: 'no such warehouse!' })
+            return res.status(400).json({message: 'no warehouse item matches the id!'})
         } else {
             return res.status(200).json(warehouse)
         }
     } catch {
-        res.status(500).json({ message: 'an error occurred while fetching the warehouse item!' })
+        res.status(500).json({message: 'an error occurred while fetching the warehouse item!'})
     }
 }
 
@@ -41,9 +41,30 @@ const createWarehouse = async (req, res) => {
     }
 }
 
+const deleteWarehouse = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        res.status(404).json({message: 'no warehouse item matches the id!'})
+    }
+
+    try {
+        const warehouse = await Warehouse.findByIdAndDelete(id)
+
+        if (!warehouse) {
+            res.status(400).json({message: 'no such warehouse item has been deleted!'})
+        } else {
+            res.status(200).json(warehouse)
+        }
+    } catch {
+        res.status(505).json({message: 'an occurred while deleting the warehouse item!'})
+    }
+}
+
 
 export default {
     getWarehouses,
     getWarehouse,
-    createWarehouse
+    createWarehouse,
+    deleteWarehouse
 }
