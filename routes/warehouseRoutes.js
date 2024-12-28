@@ -12,10 +12,10 @@ const {
 
 const router = express.Router()
 
-/** GATE ALL WAREHOUSE ITEM */
+/** GET ALL WAREHOUSE ITEM */
 router.get('/', getWarehouses)
 
-/** GATE A SINGLE WAREHOUSE ITEM */
+/** GET A SINGLE WAREHOUSE ITEM */
 router.get('/:id', getWarehouse)
 
 /** CREATE A NEW WAREHOUSE ITEM */
