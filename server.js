@@ -4,7 +4,7 @@ dotenv.config()
 import express from 'express'
 import mongoose from 'mongoose'
 import warehouseRoutes from './routes/warehouseRoutes.js'
-import warehouseMiddleware from './middleware/warehouseMiddleware.js'
+import warehouseMiddleware from './middlewares/warehouseMiddleware.js'
 
 const app = express()
 
