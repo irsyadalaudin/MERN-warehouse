@@ -4,16 +4,13 @@ dotenv.config()
 import express from 'express'
 import mongoose from 'mongoose'
 import warehouseRoutes from './routes/warehouseRoutes.js'
+import warehouseMiddleware from './middleware/warehouseMiddleware.js'
 
 const app = express()
 
 /** MIDDLEWARE */
 app.use(express.json())
-
-app.use((req, res, next) => {
-    console.log(req.path, res.method)
-    next()
-})
+app.use(warehouseMiddleware)
 
 /** ROUTES (REACT TO REQUEST) */
 app.use('/api/warehouse', warehouseRoutes)
