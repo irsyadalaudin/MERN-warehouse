@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
-import Storage from './components/Storage'
+import Warehouse from './components/Warehouse'
 import Home from './pages/Home'
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
 				<Routes>
 					<Route path='/' element={<Home />} />
 				</Routes>
-				<Storage />
+				<Warehouse />
 			</BrowserRouter>
 		</>
 	)
