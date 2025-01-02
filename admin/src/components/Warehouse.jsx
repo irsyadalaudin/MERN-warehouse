@@ -19,7 +19,7 @@ const Warehouse = () => {
         }
         fetchWarehouseItem()
     }, [])
-EW
+
     return (
         <div>
             <h2>Warehouse Items</h2>
