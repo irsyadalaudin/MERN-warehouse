@@ -1,27 +1,30 @@
 import { useEffect, useState } from 'react'
+import AddItem from './AddItem'
 
 const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
-    const [error, setError] = useState(null)
+    const [error, setError] = useState()
 
     useEffect(() => {
         const fetchWarehouseItem = async () => {
             try {
                 const response = await fetch('/api/warehouse')
-                if(!response.ok) {
+
+                if (!response.ok) {
                     throw new Error('error while fetching warehouse items!')
                 }
+
                 const data = await response.json()
                 setWarehouse(data)
             } catch (error) {
                 setError(error.message)
             }
-        }
+        };
         fetchWarehouseItem()
-    }, [])
+    }, []);
 
     return (
-        <div>
+        <>
             <h2>Warehouse Items</h2>
             {!error ? (
                 warehouse.map((item) => (
@@ -34,8 +37,11 @@ const Warehouse = () => {
             ) : (
                 <div>error: {error}</div>
             )}
-        </div>
-    )
-}
+
+            {/* DROPDOWN FORM COMPONENT */}
+            <AddItem />
+        </>
+    );
+};
 
 export default Warehouse
