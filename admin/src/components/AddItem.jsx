@@ -7,7 +7,7 @@ const AddItem = () => {
     const [error, setError] = useState()
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const newWarehouseItem = { itemName, quantity, price }
 
         try {
@@ -15,10 +15,10 @@ const AddItem = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newWarehouseItem),
-            });
+            })
 
             if (!response.ok) {
-                throw new Error('Error while creating new warehouse item!');
+                throw new Error('Error while creating new warehouse item!')
             }
 
             const data = await response.json()
@@ -33,15 +33,15 @@ const AddItem = () => {
         console.log('Quantity:', quantity)
         console.log('Price:', price)
 
-        setItemName('');
-        setQuantity('');
-        setPrice('');
-    };
+        setItemName('')
+        setQuantity('')
+        setPrice('')
+    }
 
     return (
         <>
-            <h2>Add new item</h2>
             {error && <div>{error}</div>}
+            <h2>Add new item</h2>
             <form onSubmit={handleSubmit}>
                 <label>
                     item Name:
@@ -70,7 +70,7 @@ const AddItem = () => {
                 <button type='submit'>add item</button>
             </form>
         </>
-    );
-};
+    )
+}
 
 export default AddItem

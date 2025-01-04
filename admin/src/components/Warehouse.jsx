@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import AddItem from './AddItem'
+import DeleteItem from './DeleteItem'
 
 const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
@@ -19,9 +20,9 @@ const Warehouse = () => {
             } catch (error) {
                 setError(error.message)
             }
-        };
+        }
         fetchWarehouseItem()
-    }, []);
+    }, [])
 
     return (
         <>
@@ -40,8 +41,9 @@ const Warehouse = () => {
 
             {/* DROPDOWN FORM COMPONENT */}
             <AddItem />
+            <DeleteItem />
         </>
-    );
-};
+    )
+}
 
 export default Warehouse
