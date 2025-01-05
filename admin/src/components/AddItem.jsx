@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const AddItem = ({ error, setError }) => {
     const [itemName, setItemName] = useState('')
@@ -71,6 +72,12 @@ const AddItem = ({ error, setError }) => {
             </form>
         </>
     )
+}
+
+/** PROP VALIDATION FOR error AND setError */
+AddItem.propTypes = {
+    error: PropTypes.string,
+    setError: PropTypes.func.isRequired,
 }
 
 export default AddItem
