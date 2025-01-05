@@ -1,20 +1,20 @@
 import { useState } from 'react'
 
-const AddItem = () => {
+const AddItem = ({ error, setError }) => {
     const [itemName, setItemName] = useState('')
     const [quantity, setQuantity] = useState('')
     const [price, setPrice] = useState('')
-    const [error, setError] = useState()
+    // const [error, setError] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const newWarehouseItem = { itemName, quantity, price }
+        const newItem = { itemName, quantity, price }
 
         try {
             const response = await fetch('/api/warehouse', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newWarehouseItem),
+                body: JSON.stringify(newItem)
             })
 
             if (!response.ok) {
@@ -29,7 +29,7 @@ const AddItem = () => {
             setError(error.message)
         }
 
-        console.log('Item Name:', newWarehouseItem.itemName)
+        console.log('Item Name:', newItem.itemName)
         console.log('Quantity:', quantity)
         console.log('Price:', price)
 

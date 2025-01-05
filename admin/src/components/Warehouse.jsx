@@ -40,8 +40,17 @@ const Warehouse = () => {
             )}
 
             {/* DROPDOWN FORM COMPONENT */}
-            <AddItem />
-            <DeleteItem />
+            {/* PROP DRILLING USING useState */}
+            <AddItem
+                error={error}
+                setError={setError}
+            />
+            <DeleteItem
+                warehouse={warehouse}
+                setWarehouse={setWarehouse}
+                error={setError}
+                setError={setError}
+            />
         </>
     )
 }
