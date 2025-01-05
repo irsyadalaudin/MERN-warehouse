@@ -48,7 +48,7 @@ const Warehouse = () => {
             <DeleteItem
                 warehouse={warehouse}
                 setWarehouse={setWarehouse}
-                error={setError}
+                error={error}
                 setError={setError}
             />
         </>
