@@ -42,9 +42,10 @@ const AddItem = ({ error, setError }) => {
         <>
             {error && <div>{error}</div>}
             <h2>Add new item</h2>
+
             <form onSubmit={handleSubmit}>
                 <label>
-                    item Name:
+                    item name:
                     <input
                         type='text'
                         value={itemName}
