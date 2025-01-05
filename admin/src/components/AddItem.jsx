@@ -4,7 +4,6 @@ const AddItem = ({ error, setError }) => {
     const [itemName, setItemName] = useState('')
     const [quantity, setQuantity] = useState('')
     const [price, setPrice] = useState('')
-    // const [error, setError] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
