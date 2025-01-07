@@ -1,23 +1,24 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const DeleteItem = ({ warehouse, setWarehouse, error, setError }) => {
+const DeleteItem = ({ warehouse, setWarehouse }) => {
     const [itemName, setItemName] = useState('')
+    const [error, setError] = useState()
 
     const handleDelete = async (e) => {
         e.preventDefault()
-        const deletingItem = warehouse.find((item) => item.itemName === itemName)
+        const foundItem = warehouse.find((item) => item.itemName === itemName)
 
         // IF THE ITEM IS NOT FOUND IN THE WAREHOUSE, SET AN ERROR MESSAGE
         // AND STOP FURTHER EXECUTION TO PREVENT UNNECESSARY API CALLS
-        if (!deletingItem) {
+        if (!foundItem) {
             setError('item not found!')
             return
         }
 
         try {
             // USE AN ID IN THE URL
-            const response = await fetch(`/api/warehouse/${deletingItem._id}`, {
+            const response = await fetch(`/api/warehouse/${foundItem._id}`, {
                 method: 'DELETE'
             })
 
@@ -26,7 +27,7 @@ const DeleteItem = ({ warehouse, setWarehouse, error, setError }) => {
             }
 
             // REMOVE ITEM FROM THE DB, AFTER SUCCESSFULLY MATCHING THE ITEM NAME TO BE DELETED
-            const updatedWarehouse = warehouse.filter((item) => item._id !== deletingItem._id)
+            const updatedWarehouse = warehouse.filter((item) => item._id !== foundItem._id)
             setWarehouse(updatedWarehouse)
             setItemName('')
         } catch (error) {

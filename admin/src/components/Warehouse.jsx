@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import AddItem from './AddItem'
 import DeleteItem from './DeleteItem'
+import EditItem from './EditItem'
 
 const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
@@ -41,15 +42,14 @@ const Warehouse = () => {
 
             {/* DROPDOWN FORM COMPONENT */}
             {/* PROP DRILLING USING useState */}
-            <AddItem
-                error={error}
-                setError={setError}
-            />
+            <AddItem/>
             <DeleteItem
                 warehouse={warehouse}
                 setWarehouse={setWarehouse}
-                error={error}
-                setError={setError}
+            />
+            <EditItem 
+                warehouse={warehouse}
+                setWarehouse={setWarehouse}
             />
         </>
     )

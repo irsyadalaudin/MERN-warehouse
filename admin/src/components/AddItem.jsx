@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const AddItem = ({ error, setError }) => {
+const AddItem = () => {
     const [itemName, setItemName] = useState('')
     const [quantity, setQuantity] = useState('')
     const [price, setPrice] = useState('')
+    const [error, setError] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
