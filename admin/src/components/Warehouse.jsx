@@ -7,6 +7,7 @@ import sugarImg from '../assets/sugar.jpg'
 const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
     const [error, setError] = useState()
+    const [activeForm, setActiveForm] = useState()
 
     useEffect(() => {
         const fetchWarehouseItem = async () => {
@@ -60,9 +61,34 @@ const Warehouse = () => {
             <aside className='w-full lg:w-1/3 bg-gray-100 p-4 rounded-lg shadow'>
                 <h3 className='text-lg font-semibold mb-3'>Manage Items</h3>
                 <div className='space-y-4'>
-                    <AddItem />
-                    <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} />
-                    <EditItem warehouse={warehouse} setWarehouse={setWarehouse} />
+                    <div>
+                        {/* BUTTON TO TOGLE FORM */}
+                        <button
+                            onClick={() => setActiveForm('add')}
+                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700'
+                        >
+                            Add Item
+                        </button>
+                        {/* FORM */}
+                        {activeForm === 'add' && <AddItem />}
+
+                        <button
+                            onClick={() => setActiveForm('delete')}
+                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700'
+                            >
+                            Delete Item
+                        </button>
+                        {activeForm === 'delete' && <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} />}
+
+                        <button
+                            onClick={() => setActiveForm('edit')}
+                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700'
+                            >
+                            Edit Item
+                        </button>
+                        {activeForm === 'edit' && <EditItem warehouse={warehouse} setWarehouse={setWarehouse} />}
+
+                    </div>
                 </div>
             </aside>
         </div>
