@@ -26,32 +26,33 @@ const Warehouse = () => {
     }, [])
 
     return (
-        <>
-            <h2>Warehouse Items</h2>
-            {!error ? (
-                warehouse.map((item) => (
-                    <ul key={item._id}>
-                        <li>{item.itemName}</li>
-                        <li>{item.quantity}</li>
-                        <li>{item.price}</li>
-                    </ul>
-                ))
-            ) : (
-                <div>error: {error}</div>
-            )}
-
-            {/* DROPDOWN FORM COMPONENT */}
-            {/* PROP DRILLING USING useState */}
-            <AddItem/>
-            <DeleteItem
-                warehouse={warehouse}
-                setWarehouse={setWarehouse}
-            />
-            <EditItem 
-                warehouse={warehouse}
-                setWarehouse={setWarehouse}
-            />
-        </>
+        <div className='flex flex-col lg:flex-row-reverse gap-4 p-5'>
+            {/* Bagian Utama */}
+            <div className='flex-1'>
+                <h2 className='text-xl font-bold mb-4'>Warehouse Items</h2>
+                {!error ? (
+                    warehouse.map((item) => (
+                        <ul key={item._id} className='border-b py-2'>
+                            <li className='text-gray-800'>{item.itemName}</li>
+                            <li className='text-gray-600'>Quantity: {item.quantity}</li>
+                            <li className='text-gray-600'>Price: Rp {item.price}.000</li>
+                        </ul>
+                    ))
+                ) : (
+                    <div className='text-red-500'>Error: {error}</div>
+                )}
+            </div>
+    
+            {/* Aside */}
+            <aside className='w-full lg:w-1/3 bg-gray-100 p-4 rounded-lg shadow'>
+                <h3 className='text-lg font-semibold mb-3'>Manage Items</h3>
+                <div className='space-y-4'>
+                    <AddItem />
+                    <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} />
+                    <EditItem warehouse={warehouse} setWarehouse={setWarehouse} />
+                </div>
+            </aside>
+        </div>
     )
 }
 
