@@ -37,21 +37,27 @@ const DeleteItem = ({ warehouse, setWarehouse }) => {
 
     return (
         <>
-            <h2>delete item</h2>
+            <h2 className='text-2xl font-semibold mb-4'>delete item</h2>
             {!error ? (
-                <form onSubmit={handleDelete}>
-                    <label>
-                        name of the item to delete:
+                <form onSubmit={handleDelete} className='space-y-4'>
+                    <label className='block text-sm font-medium text-gray-700'>
+                        Name of the item to delete:
                         <input
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
+                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
                         />
                     </label>
-                    <button type='submit'>delete item</button>
+                    <button
+                        type='submit'
+                        className='w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                    >
+                        Delete Item
+                    </button>
                 </form>
             ) : (
-                <div>error: {error}</div>
+                <div className='text-red-500'>error: {error}</div>
             )}
         </>
     )
