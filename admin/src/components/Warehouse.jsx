@@ -27,7 +27,7 @@ const Warehouse = () => {
 
     return (
         <div className='flex flex-col lg:flex-row-reverse gap-4 p-5'>
-            {/* Bagian Utama */}
+            {/* MAIN */}
             <div className='flex-1'>
                 <h2 className='text-xl font-bold mb-4'>Warehouse Items</h2>
                 {!error ? (
@@ -43,7 +43,7 @@ const Warehouse = () => {
                 )}
             </div>
     
-            {/* Aside */}
+            {/* ASIDE */}
             <aside className='w-full lg:w-1/3 bg-gray-100 p-4 rounded-lg shadow'>
                 <h3 className='text-lg font-semibold mb-3'>Manage Items</h3>
                 <div className='space-y-4'>
