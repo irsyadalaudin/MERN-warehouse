@@ -48,20 +48,22 @@ const EditItem = ({ warehouse, setWarehouse }) => {
 
     return (
         <>
-            {error && <div>{error}</div>}
             <h2>edit item</h2>
-
-            <form onSubmit={handleFind}>
-                <label>
-                    which item you want to edit:
-                    <input
-                        type='text'
-                        value={itemName}
-                        onChange={(e) => setItemName(e.target.value)}
-                    />
-                </label>
-                <button type='submit'>find item and edit</button>
-            </form>
+            {!error ? (
+                <form onSubmit={handleFind}>
+                    <label>
+                        which item you want to edit:
+                        <input
+                            type='text'
+                            value={itemName}
+                            onChange={(e) => setItemName(e.target.value)}
+                        />
+                    </label>
+                    <button type='submit'>find item and edit</button>
+                </form>
+            ) : (
+                <div>error: {error}</div>
+            )}
 
             {editValues && (
                 <form onSubmit={handleEdit}>

@@ -37,20 +37,22 @@ const DeleteItem = ({ warehouse, setWarehouse }) => {
 
     return (
         <>
-        {error && <div>{error}</div>}
-        <h2>delete item</h2>
-
-        <form onSubmit={handleDelete}>
-            <label>
-                name of the item to delete:
-                <input
-                    type='text'
-                    value={itemName}
-                    onChange={(e) => setItemName(e.target.value)}
-                />
-            </label>
-            <button type='submit'>delete item</button>
-        </form>
+            <h2>delete item</h2>
+            {!error ? (
+                <form onSubmit={handleDelete}>
+                    <label>
+                        name of the item to delete:
+                        <input
+                            type='text'
+                            value={itemName}
+                            onChange={(e) => setItemName(e.target.value)}
+                        />
+                    </label>
+                    <button type='submit'>delete item</button>
+                </form>
+            ) : (
+                <div>error: {error}</div>
+            )}
         </>
     )
 }

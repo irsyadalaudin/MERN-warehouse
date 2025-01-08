@@ -41,36 +41,38 @@ const AddItem = () => {
 
     return (
         <>
-            {error && <div>{error}</div>}
             <h2>Add new item</h2>
-
-            <form onSubmit={handleSubmit}>
-                <label>
-                    item name:
-                    <input
-                        type='text'
-                        value={itemName}
-                        onChange={(e) => setItemName(e.target.value)}
-                    />
-                </label>
-                <label>
-                    quantity:
-                    <input
-                        type='number'
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                    />
-                </label>
-                <label>
-                    price:
-                    <input
-                        type='number'
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
-                </label>
-                <button type='submit'>add item</button>
-            </form>
+            {!error ? (
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        item name:
+                        <input
+                            type='text'
+                            value={itemName}
+                            onChange={(e) => setItemName(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        quantity:
+                        <input
+                            type='number'
+                            value={quantity}
+                            onChange={(e) => setQuantity(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        price:
+                        <input
+                            type='number'
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                    </label>
+                    <button type='submit'>add item</button>
+                </form>
+            ) : (
+                <div>Error: {error}</div>
+            )}
         </>
     )
 }
