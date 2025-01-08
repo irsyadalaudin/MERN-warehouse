@@ -48,49 +48,64 @@ const EditItem = ({ warehouse, setWarehouse }) => {
 
     return (
         <>
-            <h2>edit item</h2>
+            <h2 className='text-2xl font-semibold mb-4'>edit item</h2>
             {!error ? (
-                <form onSubmit={handleFind}>
-                    <label>
-                        which item you want to edit:
+                <form onSubmit={handleFind} className='space-y-4'>
+                    <label className='block text-sm font-medium text-gray-700'>
+                        Which item you want to edit:
                         <input
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
+                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
                         />
                     </label>
-                    <button type='submit'>find item and edit</button>
+                    <button
+                        type='submit'
+                        className='w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                    >
+                        Find item and edit
+                    </button>
                 </form>
             ) : (
                 <div>error: {error}</div>
             )}
 
             {editValues && (
-                <form onSubmit={handleEdit}>
-                    <label>
-                        item name:
+                <form onSubmit={handleEdit} className='space-y-4'>
+                    <label className='block text-sm font-medium text-gray-700'>
+                        Item name:
                         <input 
                             type='text'
                             value={editValues.itemName}
                             onChange={(e) => setEditValues({ ...editValues, itemName: e.target.value })}
+                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
                         />
                     </label>
                     <label>
-                        quantity:
+                        Quantity:
                         <input 
                             type='number'
                             value={editValues.quantity}
                             onChange={(e) => setEditValues({ ...editValues, quantity: e.target.value })}
+                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
                         />
                     </label>
                     <label>
+                        Price:
                         <input
                             type='number'
                             value={editValues.price}
                             onChange={(e) => setEditValues({ ...editValues, price: e.target.value })}
+                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
                         />
                     </label>
-                    <button type='submit'>update item</button>
+                    <button
+                        type='submit'
+                        className='w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                    >
+                        Update item
+                    </button>
                 </form>
             )}
         </>
