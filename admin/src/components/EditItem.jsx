@@ -60,12 +60,14 @@ const EditItem = ({ warehouse, setWarehouse }) => {
                             className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
                         />
                     </label>
-                    <button
-                        type='submit'
-                        className='w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                    >
-                        Find item and edit
-                    </button>
+                    <div className='flex justify-end'>
+                        <button
+                            type='submit'
+                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                        >
+                            Find item and edit
+                        </button>
+                    </div>
                 </form>
             ) : (
                 <div>error: {error}</div>
@@ -100,12 +102,14 @@ const EditItem = ({ warehouse, setWarehouse }) => {
                             className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
                         />
                     </label>
-                    <button
-                        type='submit'
-                        className='w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                    >
-                        Enter
-                    </button>
+                    <div className='flex justify-end'>
+                        <button
+                            type='submit'
+                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                            >
+                            Enter
+                        </button>
+                    </div>
                 </form>
             )}
         </>
