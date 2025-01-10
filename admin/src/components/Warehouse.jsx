@@ -71,7 +71,7 @@ const Warehouse = () => {
                             Add Item
                         </button>
                         {/* FORM */}
-                        {activeForm === 'add' && <AddItem />}
+                        {activeForm === 'add' && <AddItem setActiveForm={setActiveForm} />}
 
                         <button
                             onClick={() => setActiveForm('delete')}
@@ -80,7 +80,7 @@ const Warehouse = () => {
                             >
                             Delete Item
                         </button>
-                        {activeForm === 'delete' && <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} />}
+                        {activeForm === 'delete' && <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
 
                         <button
                             onClick={() => setActiveForm('edit')}
@@ -89,7 +89,7 @@ const Warehouse = () => {
                             >
                             Edit Item
                         </button>
-                        {activeForm === 'edit' && <EditItem warehouse={warehouse} setWarehouse={setWarehouse} />}
+                        {activeForm === 'edit' && <EditItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
 
                     </div>
                 </div>
