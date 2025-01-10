@@ -40,10 +40,9 @@ const AddItem = () => {
 
     return (
         <>
-            <h2 className='text-2xl font-semibold mb-4'>Add New Item</h2>
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
-                    <label className='block text-sm font-medium text-gray-700'>
+                    <label className='mt-3 block text-sm font-medium text-gray-700'>
                         Item Name:
                         <input
                             type='text'
