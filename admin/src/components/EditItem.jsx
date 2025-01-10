@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const EditItem = ({ warehouse, setWarehouse }) => {
+const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [itemName, setItemName] = useState('')
     const [error, setError] = useState()
     const [editValues, setEditValues] = useState()
@@ -59,12 +59,18 @@ const EditItem = ({ warehouse, setWarehouse }) => {
                             className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
                         />
                     </label>
-                    <div className='flex justify-end'>
+                    <div className='flex justify-between'>
+                        <button
+                            onClick={() => setActiveForm()}
+                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                        >
+                            ⬅ Go Back
+                        </button>
                         <button
                             type='submit'
                             className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
                         >
-                            Find item and edit
+                            Enter
                         </button>
                     </div>
                 </form>
@@ -101,11 +107,17 @@ const EditItem = ({ warehouse, setWarehouse }) => {
                             className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
                         />
                     </label>
-                    <div className='flex justify-end'>
+                    <div className='flex justify-between'>
+                        <button
+                            onClick={() => setActiveForm()}
+                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                        >
+                            ⬅ Go Back
+                        </button>
                         <button
                             type='submit'
                             className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                            >
+                        >
                             Enter
                         </button>
                     </div>
@@ -125,6 +137,7 @@ EditItem.propTypes = {
     setWarehouse: PropTypes.func.isRequired,
     error: PropTypes.string,
     setError: PropTypes.func.isRequired,
+    setActiveForm: PropTypes.func.isRequired
 }
 
 export default EditItem
