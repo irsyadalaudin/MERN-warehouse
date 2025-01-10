@@ -65,7 +65,8 @@ const Warehouse = () => {
                         {/* BUTTON TO TOGLE FORM */}
                         <button
                             onClick={() => setActiveForm('add')}
-                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700'
+                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed'
+                            disabled={activeForm ===  'add'}
                         >
                             Add Item
                         </button>
@@ -74,7 +75,8 @@ const Warehouse = () => {
 
                         <button
                             onClick={() => setActiveForm('delete')}
-                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700'
+                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed]'
+                            disabled={activeForm === 'delete'}
                             >
                             Delete Item
                         </button>
@@ -82,7 +84,8 @@ const Warehouse = () => {
 
                         <button
                             onClick={() => setActiveForm('edit')}
-                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700'
+                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed]'
+                            disabled={activeForm === 'edit'}
                             >
                             Edit Item
                         </button>
