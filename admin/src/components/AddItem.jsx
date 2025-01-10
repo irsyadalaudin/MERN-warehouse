@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
-const AddItem = () => {
+const AddItem = ({ setActiveForm }) => {
     const [itemName, setItemName] = useState('')
     const [quantity, setQuantity] = useState('')
     const [price, setPrice] = useState('')
@@ -69,7 +70,13 @@ const AddItem = () => {
                             className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
                         />
                     </label>
-                    <div className='flex justify-end'>
+                    <div className='flex justify-between'>
+                        <button
+                            onClick={() => setActiveForm()}
+                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                        >
+                            ⬅ Go Back
+                        </button>
                         <button
                             type='submit'
                             className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
@@ -84,6 +91,10 @@ const AddItem = () => {
         </>
     )
     
+}
+
+AddItem.propTypes = {
+    setActiveForm: PropTypes.func.isRequired
 }
 
 export default AddItem
