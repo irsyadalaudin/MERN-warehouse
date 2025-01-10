@@ -71,7 +71,7 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     )
 }
 
-/** PROP VALIDATION FOR warehouse, setWarehouse error AND setError */
+/** PROP VALIDATION FOR warehouse, setWarehouse error, setError, setActiveForm */
 DeleteItem.propTypes = {
     warehouse: PropTypes.arrayOf(
         PropTypes.shape({

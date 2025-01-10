@@ -127,6 +127,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     )
 }
 
+/** PROP VALIDATION FOR warehouse, setWarehouse error, setError, setActiveForm */
 EditItem.propTypes = {
     warehouse: PropTypes.arrayOf(
         PropTypes.shape({

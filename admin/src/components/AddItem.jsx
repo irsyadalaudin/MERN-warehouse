@@ -93,6 +93,7 @@ const AddItem = ({ setActiveForm }) => {
     
 }
 
+/** PROP VALIDATION FOR setActiveForm */
 AddItem.propTypes = {
     setActiveForm: PropTypes.func.isRequired
 }
