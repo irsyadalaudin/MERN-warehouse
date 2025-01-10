@@ -37,10 +37,9 @@ const DeleteItem = ({ warehouse, setWarehouse }) => {
 
     return (
         <>
-            <h2 className='text-2xl font-semibold mb-4'>delete item</h2>
             {!error ? (
                 <form onSubmit={handleDelete} className='space-y-4'>
-                    <label className='block text-sm font-medium text-gray-700'>
+                    <label className='mt-3 block text-sm font-medium text-gray-700'>
                         Name of the item to delete:
                         <input
                             type='text'
