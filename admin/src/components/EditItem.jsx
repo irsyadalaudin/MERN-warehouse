@@ -17,6 +17,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         }
 
         setEditValues(foundItem)
+        setItemName('')
         setError()
     }
     
