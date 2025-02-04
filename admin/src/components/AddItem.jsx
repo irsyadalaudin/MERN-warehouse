@@ -83,6 +83,7 @@ const AddItem = ({ setActiveForm }) => {
                     </label>
                     <div className='flex justify-between'>
                         <button
+                            type='button'
                             onClick={() => setActiveForm()}
                             className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
                         >
