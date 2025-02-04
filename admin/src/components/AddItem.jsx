@@ -10,7 +10,6 @@ const AddItem = ({ setActiveForm }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // const newItem = { itemName, quantity, price, file }
 
         const formData = new FormData()
         formData.append('itemName', itemName)
@@ -23,8 +22,6 @@ const AddItem = ({ setActiveForm }) => {
         try {
             const response = await fetch('/api/warehouse', {
                 method: 'POST',
-                // headers: { 'Content-Type': 'application/json' },
-                // body: JSON.stringify(newItem)
                 body: formData
             })
 
@@ -33,9 +30,6 @@ const AddItem = ({ setActiveForm }) => {
             }
 
             const data = await response.json()
-            // setItemName(data.itemName)
-            // setQuantity(data.quantity)
-            // setPrice(data.price)
             console.log('Item has been successfully created:', data)
 
             setItemName('')
@@ -47,36 +41,7 @@ const AddItem = ({ setActiveForm }) => {
         } catch (error) {
             setError(error.message)
         }
-
-        // console.log('Item Name:', newItem.itemName)
-        // console.log('Quantity:', quantity)
-        // console.log('Price:', price)
-
-        // setItemName('')
-        // setQuantity('')
-        // setPrice('')
     }
-
-    // const upload = async () => {
-    //     const formData = new FormData()
-    //     formData.append('file', file)
-
-    //     try {
-    //         const response = await fetch('/api/upload', {
-    //             method: 'POST',
-    //             body: formData
-    //         })
-
-    //         if (!response.ok) {
-    //             throw new Error('failed to uploading image')
-    //         }
-
-    //         const data = await response.json()
-    //         console.log('File:', data)
-    //     } catch (error) {
-    //         setError(error.messae)
-    //     }
-    // }
 
     return (
         <>
@@ -85,16 +50,9 @@ const AddItem = ({ setActiveForm }) => {
                     <label>
                         File:
                         <input 
-                            type='file' 
-                            // value={file}
+                            type='file'
                             onChange={(e) => setFile(e.target.files[0])}
                         />
-                        {/* <button
-                            type='button'
-                            onClick={upload}
-                        >
-                            Upload
-                        </button> */}
                     </label>
                     <label className='mt-3 block text-sm font-medium text-gray-700'>
                         Item Name:

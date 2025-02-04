@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import AddItem from './AddItem'
 import DeleteItem from './DeleteItem'
 import EditItem from './EditItem'
-// import sugarImg from '../assets/sugar.jpg'
 
 const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
@@ -39,17 +38,11 @@ const Warehouse = () => {
                                 key={item._id}
                                 className='bg-white border border-gray-300 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow'
                             >
-                                <img 
-                                    // src={item.file ? `http://localhost:4000${item.file}`: placeholderImage}
+                                <img
                                     src={`http://localhost:4000${item.file}`}
                                     alt={item.itemName} 
                                     className='w-full h-32 object-cover mb-4 rounded-md'
                                 />
-                                {/* <img
-                                    src={sugarImg}
-                                    alt={item.itemName}
-                                    className='w-full h-32 object-cover mb-4 rounded-md'
-                                /> */}
                                 <h3 className='text-lg font-semibold text-gray-800 mb-2'>{item.itemName}</h3>
                                 <p className='text-gray-600'>Quantity: {item.quantity}</p>
                                 <p className='text-gray-600'>
