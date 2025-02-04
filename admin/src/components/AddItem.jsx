@@ -6,16 +6,26 @@ const AddItem = ({ setActiveForm }) => {
     const [quantity, setQuantity] = useState('')
     const [price, setPrice] = useState('')
     const [error, setError] = useState()
+    const [file, setFile] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const newItem = { itemName, quantity, price }
+        // const newItem = { itemName, quantity, price, file }
+
+        const formData = new FormData()
+        formData.append('itemName', itemName)
+        formData.append('quantity', quantity)
+        formData.append('price', price)
+        if (file) {
+            formData.append('file', file)
+        }
 
         try {
             const response = await fetch('/api/warehouse', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newItem)
+                // headers: { 'Content-Type': 'application/json' },
+                // body: JSON.stringify(newItem)
+                body: formData
             })
 
             if (!response.ok) {
@@ -23,26 +33,69 @@ const AddItem = ({ setActiveForm }) => {
             }
 
             const data = await response.json()
-            setItemName(data.itemName)
-            setQuantity(data.quantity)
-            setPrice(data.price)
+            // setItemName(data.itemName)
+            // setQuantity(data.quantity)
+            // setPrice(data.price)
+            console.log('Item has been successfully created:', data)
+
+            setItemName('')
+            setQuantity('')
+            setPrice('')
+            setFile()
+            setError()
+
         } catch (error) {
             setError(error.message)
         }
 
-        console.log('Item Name:', newItem.itemName)
-        console.log('Quantity:', quantity)
-        console.log('Price:', price)
+        // console.log('Item Name:', newItem.itemName)
+        // console.log('Quantity:', quantity)
+        // console.log('Price:', price)
 
-        setItemName('')
-        setQuantity('')
-        setPrice('')
+        // setItemName('')
+        // setQuantity('')
+        // setPrice('')
     }
+
+    // const upload = async () => {
+    //     const formData = new FormData()
+    //     formData.append('file', file)
+
+    //     try {
+    //         const response = await fetch('/api/upload', {
+    //             method: 'POST',
+    //             body: formData
+    //         })
+
+    //         if (!response.ok) {
+    //             throw new Error('failed to uploading image')
+    //         }
+
+    //         const data = await response.json()
+    //         console.log('File:', data)
+    //     } catch (error) {
+    //         setError(error.messae)
+    //     }
+    // }
 
     return (
         <>
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
+                    <label>
+                        File:
+                        <input 
+                            type='file' 
+                            // value={file}
+                            onChange={(e) => setFile(e.target.files[0])}
+                        />
+                        {/* <button
+                            type='button'
+                            onClick={upload}
+                        >
+                            Upload
+                        </button> */}
+                    </label>
                     <label className='mt-3 block text-sm font-medium text-gray-700'>
                         Item Name:
                         <input

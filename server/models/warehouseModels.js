@@ -16,6 +16,10 @@ const WarehouseSchema = new Schema({
     price: {
         type: Number,
         required: true
+    },
+    file: {
+        type: String,
+        required: false
     }
 }, { timestamps: true })
 

@@ -1,6 +1,7 @@
 /** GET, DELETE, POST METHOD */
 import express from 'express'
 import warehouseControllers from '../controllers/warehouseControllers.js'
+import upload from '../config/multerConfig.js'
 
 const {
     getWarehouses,
@@ -19,7 +20,7 @@ router.get('/', getWarehouses)
 router.get('/:id', getWarehouse)
 
 /** CREATE A NEW WAREHOUSE ITEM */
-router.post('/', createWarehouse)
+router.post('/', upload.single('file'), createWarehouse)
 
 /** DELETE A SINGLE WAREHOUSE ITEM */
 router.delete('/:id', deleteWarehouse)

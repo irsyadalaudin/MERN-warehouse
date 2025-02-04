@@ -5,6 +5,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import warehouseRoutes from './routes/warehouseRoutes.js'
 import warehouseMiddleware from './middlewares/warehouseMiddleware.js'
+// import upload from './config/multerConfig.js'
 
 const app = express()
 
@@ -14,6 +15,11 @@ app.use(warehouseMiddleware)
 
 /** ROUTES (REACT TO REQUEST) */
 app.use('/api/warehouse', warehouseRoutes)
+app.use('/images', express.static('public/images'))
+// app.post('/api/upload', upload.single('file'), (req, res) => {
+//     console.log(req.body)
+//     console.log(req.file)
+// })
 
 /** CONNECT TO DB */
 mongoose.connect(process.env.MONGO_URI, { dbName: 'warehouse' })
@@ -28,3 +34,4 @@ mongoose.connect(process.env.MONGO_URI, { dbName: 'warehouse' })
 app.listen(process.env.PORT, () => {
     console.log(`server is running on http://localhost:${process.env.PORT}`)
 })
+
