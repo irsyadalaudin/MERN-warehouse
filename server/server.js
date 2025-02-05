@@ -14,6 +14,7 @@ app.use(warehouseMiddleware)
 
 /** ROUTES (REACT TO REQUEST) */
 app.use('/api/warehouse', warehouseRoutes)
+/** SERVES STATIC IMAGE FILES FROM THE 'public/images' DIRECTORY */
 app.use('/images', express.static('public/images'))
 
 /** CONNECT TO DB */

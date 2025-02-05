@@ -19,7 +19,7 @@ router.get('/', getWarehouses)
 /** GET A SINGLE WAREHOUSE ITEM */
 router.get('/:id', getWarehouse)
 
-/** CREATE A NEW WAREHOUSE ITEM */
+/** CREATE A NEW WAREHOUSE ITEM - HANDLES FILE UPLOAD AND CREATES A NEW WAREHOUSE ITEM */
 router.post('/', upload.single('file'), createWarehouse)
 
 /** DELETE A SINGLE WAREHOUSE ITEM */

@@ -11,10 +11,13 @@ const AddItem = ({ setActiveForm }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        // CREATE A NEW FormData OBJECT AND APPEND THE ITEM DETAILS (itemName, quantity, price)
         const formData = new FormData()
         formData.append('itemName', itemName)
         formData.append('quantity', quantity)
         formData.append('price', price)
+
+        // IF A FILE IS UPLOADED, append() TO THE FormData OBJECT
         if (file) {
             formData.append('file', file)
         }
@@ -29,9 +32,11 @@ const AddItem = ({ setActiveForm }) => {
                 throw new Error('Error while creating new warehouse item!')
             }
 
+            // PARSE THE RESPONSE BODY AS JSON AND LOG THE SUCCESS MESSAGE WITH THE CREATED ITEM DATA
             const data = await response.json()
             console.log('Item has been successfully created:', data)
 
+            // RESET FORM FIELDS (itemName, quantity, price, file, and error) AFTER SUCCESSFUL ITEM CREATION
             setItemName('')
             setQuantity('')
             setPrice('')
