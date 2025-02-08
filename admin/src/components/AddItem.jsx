@@ -4,18 +4,20 @@ import PropTypes from 'prop-types'
 const AddItem = ({ setActiveForm }) => {
     const [itemName, setItemName] = useState('')
     const [quantity, setQuantity] = useState('')
-    const [price, setPrice] = useState('')
+    const [info, setInfo] = useState('')
+    const [weight, setWeight] = useState('')
     const [error, setError] = useState()
     const [file, setFile] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        // CREATE A NEW FormData OBJECT AND APPEND THE ITEM DETAILS (itemName, quantity, price)
+        // CREATE A NEW FormData OBJECT AND APPEND THE ITEM DETAILS (itemName, quantity, weight)
         const formData = new FormData()
         formData.append('itemName', itemName)
+        formData.append('weight', weight)
+        formData.append('info', info)
         formData.append('quantity', quantity)
-        formData.append('price', price)
 
         // IF A FILE IS UPLOADED, append() TO THE FormData OBJECT
         if (file) {
@@ -36,10 +38,11 @@ const AddItem = ({ setActiveForm }) => {
             const data = await response.json()
             console.log('Item has been successfully created:', data)
 
-            // RESET FORM FIELDS (itemName, quantity, price, file, and error) AFTER SUCCESSFUL ITEM CREATION
+            // RESET FORM FIELDS (itemName, quantity, weight, file, and error) AFTER SUCCESSFUL ITEM CREATION
             setItemName('')
             setQuantity('')
-            setPrice('')
+            setInfo('')
+            setWeight('')
             setFile()
             setError()
 
@@ -69,20 +72,29 @@ const AddItem = ({ setActiveForm }) => {
                         />
                     </label>
                     <label className='block text-sm font-medium text-gray-700'>
+                        Weight (in Kgs):
+                        <input
+                            type='number'
+                            value={weight}
+                            onChange={(e) => setWeight(e.target.value)}
+                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
+                    </label>
+                    <label className='block text-sm font-medium text-gray-700'>
+                        Additional Info:
+                        <input
+                            type='text' 
+                            value={info}
+                            onChange={(e) => setInfo(e.target.value)}
+                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
+                    </label>
+                    <label className='block text-sm font-medium text-gray-700'>
                         Quantity:
                         <input
                             type='number'
                             value={quantity}
                             onChange={(e) => setQuantity(e.target.value)}
-                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
-                        />
-                    </label>
-                    <label className='block text-sm font-medium text-gray-700'>
-                        Price (in thousand Rupiah):
-                        <input
-                            type='number'
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
                             className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
                         />
                     </label>

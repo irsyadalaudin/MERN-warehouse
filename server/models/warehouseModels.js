@@ -9,11 +9,15 @@ const WarehouseSchema = new Schema({
         type: String,
         required: true
     },
-    quantity: {
+    weight: {
         type: Number,
         required: true
     },
-    price: {
+    info: {
+        type: String,
+        required: false
+    },
+    quantity: {
         type: Number,
         required: true
     },

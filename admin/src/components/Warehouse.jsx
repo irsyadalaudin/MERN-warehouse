@@ -44,10 +44,12 @@ const Warehouse = () => {
                                     className='w-full h-32 object-cover mb-4 rounded-md'
                                 />
                                 <h3 className='text-lg font-semibold text-gray-800 mb-2'>{item.itemName}</h3>
-                                <p className='text-gray-600'>Quantity: {item.quantity}</p>
-                                <p className='text-gray-600'>
+                                <p className='text-gray-600'>{item.weight}kg</p>
+                                <p className='text-gray-600'>{item.info}</p>
+                                <p className='text-gray-600'>quantity: {item.quantity}</p>
+                                {/* <p className='text-gray-600'>
                                     Price: <span className='font-medium text-green-600'>Rp {item.price}.000</span>
-                                </p>
+                                </p> */}
                             </div>
                         ))}
                     </div>
