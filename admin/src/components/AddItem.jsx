@@ -78,7 +78,7 @@ const AddItem = ({ setActiveForm }) => {
                             type='number'
                             value={weight}
                             onChange={(e) => setWeight(e.target.value)}
-                            className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
                     <label className='block'>
@@ -87,7 +87,7 @@ const AddItem = ({ setActiveForm }) => {
                             type='text' 
                             value={info}
                             onChange={(e) => setInfo(e.target.value)}
-                            className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
                     <label className='block'>
@@ -96,7 +96,7 @@ const AddItem = ({ setActiveForm }) => {
                             type='number'
                             value={quantity}
                             onChange={(e) => setQuantity(e.target.value)}
-                            className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
                     <button

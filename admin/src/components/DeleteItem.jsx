@@ -45,7 +45,7 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
                     <button
