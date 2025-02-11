@@ -55,15 +55,6 @@ const AddItem = ({ setActiveForm }) => {
         <>
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
-                    {/* <label>
-                        File:
-                        <input 
-                            type='file'
-                            onChange={(e) => setFile(e.target.files[0])}
-                            className='rounded-lg appearance-none p-2'
-                        />
-                    </label> */}
-                    {/* <label className='mt-1 pl-2 block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'> */}
                     <label className='block mt-1 pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
                         Upload File
                         <input 
@@ -73,7 +64,6 @@ const AddItem = ({ setActiveForm }) => {
                         />
                     </label>
                     <label className='block'>
-                        {/* Item Name: */}
                         <input
                             placeholder='Item Name'
                             type='text'
@@ -83,7 +73,6 @@ const AddItem = ({ setActiveForm }) => {
                         />
                     </label>
                     <label className='block'>
-                        {/* Weight (in Kgs): */}
                         <input
                             placeholder='Weights (in Kgs)'
                             type='number'
@@ -93,7 +82,6 @@ const AddItem = ({ setActiveForm }) => {
                         />
                     </label>
                     <label className='block'>
-                        {/* Additional Info: */}
                         <input
                             placeholder='Additional Info'
                             type='text' 
@@ -103,7 +91,6 @@ const AddItem = ({ setActiveForm }) => {
                         />
                     </label>
                     <label className='block'>
-                        {/* Quantity: */}
                         <input
                             placeholder='Quantity'
                             type='number'
