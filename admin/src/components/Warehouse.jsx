@@ -27,7 +27,7 @@ const Warehouse = () => {
     }, [])
 
     return (
-        <div className='flex flex-col lg:flex-row-reverse gap-8 p-8 bg-gray-50 min-h-screen'>
+        <div className='flex flex-col lg:flex-row-reverse gap-8 p-8 min-h-screen'>
             {/* MAIN */}
             <div className='flex-1 lg:w-3/4'>
                 <h2 className='text-3xl font-bold mb-8 text-gray-900 pb-4'>Warehouse Items</h2>
