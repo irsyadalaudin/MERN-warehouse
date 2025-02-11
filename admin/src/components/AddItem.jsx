@@ -83,7 +83,7 @@ const AddItem = ({ setActiveForm }) => {
                     </label>
                     <label className='block'>
                         <input
-                            placeholder='Additional Info'
+                            placeholder='Package'
                             type='text' 
                             value={info}
                             onChange={(e) => setInfo(e.target.value)}
