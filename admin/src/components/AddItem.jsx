@@ -55,7 +55,7 @@ const AddItem = ({ setActiveForm }) => {
         <>
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
-                    <label className='block mt-1 pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
+                    <label className='block mt-2 pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
                         Upload File
                         <input 
                             type='file'
@@ -99,21 +99,21 @@ const AddItem = ({ setActiveForm }) => {
                             className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
-                    <div className='flex justify-between'>
+                    {/* <div className='flex justify-between gap-3'> */}
                         <button
                             type='button'
                             onClick={() => setActiveForm()}
-                            className='mb-5 py-2 px-4 bg-gradient-to-r from-cyan-800 to-cyan-600 text-white font-semibold rounded-md shadow-md hover:from-cyan-900 hover:to-cyan-700 transition-all'
+                            className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
                         >
                             ⬅ Go Back
                         </button>
                         <button
                             type='submit'
-                            className='mb-5 py-2 px-4 bg-gradient-to-r from-cyan-800 to-cyan-600 text-white font-semibold rounded-md shadow-md hover:from-cyan-900 hover:to-cyan-700 transition-all'
+                            className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
                         >
                             Enter
                         </button>
-                    </div>
+                    {/* </div> */}
                 </form>
             ) : (
                 <div className='text-red-500'>Error: {error}</div>
