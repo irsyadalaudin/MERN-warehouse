@@ -99,7 +99,6 @@ const AddItem = ({ setActiveForm }) => {
                             className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
-                    {/* <div className='flex justify-between gap-3'> */}
                         <button
                             type='button'
                             onClick={() => setActiveForm()}
@@ -113,7 +112,6 @@ const AddItem = ({ setActiveForm }) => {
                         >
                             Enter
                         </button>
-                    {/* </div> */}
                 </form>
             ) : (
                 <div className='text-red-500'>Error: {error}</div>

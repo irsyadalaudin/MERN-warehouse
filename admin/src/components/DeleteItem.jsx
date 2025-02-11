@@ -40,7 +40,6 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             {!error ? (
                 <form onSubmit={handleDelete} className='space-y-4'>
                     <label className='block mt-2'>
-                        {/* Name of the item to delete: */}
                         <input
                             placeholder='Name of the item to delete'
                             type='text'
@@ -49,7 +48,6 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
-                    {/* <div className='flex justify-between gap-3'> */}
                         <button
                             type='button'
                             onClick={() => setActiveForm()}
@@ -63,7 +61,6 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         >
                             Enter
                         </button>
-                    {/* </div> */}
                 </form>
             ) : (
                 <div className='text-red-500'>error: {error}</div>
