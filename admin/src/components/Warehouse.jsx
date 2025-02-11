@@ -27,47 +27,44 @@ const Warehouse = () => {
     }, [])
 
     return (
-        <div className='flex flex-col lg:flex-row-reverse gap-4 p-5'>
+        <div className='flex flex-col lg:flex-row-reverse gap-8 p-8 bg-gray-50 min-h-screen'>
             {/* MAIN */}
-            <div className='flex-1'>
-                <h2 className='text-2xl font-bold mb-6 text-gray-800 border-b pb-2'>Warehouse Items</h2>
+            <div className='flex-1 lg:w-3/4'>
+                <h2 className='text-3xl font-bold mb-8 text-gray-900 pb-4'>Warehouse Items</h2>
                 {!error ? (
-                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
                         {warehouse.map((item) => (
                             <div
                                 key={item._id}
-                                className='bg-white border border-gray-300 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow'
+                                className='bg-white border border-gray-200 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1'
                             >
                                 <img
                                     src={`http://localhost:4000${item.file}`}
                                     alt={item.itemName} 
-                                    className='w-full h-32 object-cover mb-4 rounded-md'
+                                    className='w-full h-48 object-cover mb-6 rounded-lg'
                                 />
-                                <h3 className='text-lg font-semibold text-gray-800 mb-2'>{item.itemName}</h3>
-                                <p className='text-gray-600'>{item.weight}kg</p>
-                                <p className='text-gray-600'>{item.info}</p>
-                                <p className='text-gray-600'>quantity: {item.quantity}</p>
-                                {/* <p className='text-gray-600'>
-                                    Price: <span className='font-medium text-green-600'>Rp {item.price}.000</span>
-                                </p> */}
+                                <h3 className='text-xl font-bold text-gray-900 mb-2'>{item.itemName}</h3>
+                                <p className='text-gray-700 mb-1'>{item.weight}kg</p>
+                                <p className='text-gray-700 mb-1'>{item.info}</p>
+                                <p className='text-gray-700 font-medium'>Quantity: {item.quantity}</p>
                             </div>
                         ))}
                     </div>
                 ) : (
-                    <div className='text-red-500 mt-4'>Error: {error}</div>
+                    <div className='text-red-600 mt-6 font-medium'>Error: {error}</div>
                 )}
             </div>
 
             {/* ASIDE */}
-            <aside className='w-full lg:w-1/3 bg-gray-100 p-4 rounded-lg shadow'>
-                <h3 className='text-lg font-semibold mb-3'>Manage Items</h3>
-                <div className='space-y-4'>
+            <aside className='w-full lg:w-1/4 bg-white p-6 rounded-xl shadow-lg'>
+                <h3 className='text-2xl font-bold mb-6 text-gray-900'>Manage Items</h3>
+                <div className='space-y-6'>
                     <div>
-                        {/* BUTTON TO TOGLE FORM */}
+                        {/* BUTTON TO TOGGLE FORM */}
                         <button
                             onClick={() => setActiveForm('add')}
-                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed'
-                            disabled={activeForm ===  'add'}
+                            className='w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white font-bold rounded-lg shadow-md hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed'
+                            disabled={activeForm === 'add'}
                         >
                             Add Item
                         </button>
@@ -76,22 +73,21 @@ const Warehouse = () => {
 
                         <button
                             onClick={() => setActiveForm('delete')}
-                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed]'
+                            className='w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white font-bold rounded-lg shadow-md hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
                             disabled={activeForm === 'delete'}
-                            >
+                        >
                             Delete Item
                         </button>
                         {activeForm === 'delete' && <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
 
                         <button
                             onClick={() => setActiveForm('edit')}
-                            className='w-full py-2 px-4 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed]'
+                            className='w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white font-bold rounded-lg shadow-md hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
                             disabled={activeForm === 'edit'}
-                            >
+                        >
                             Edit Item
                         </button>
                         {activeForm === 'edit' && <EditItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
-
                     </div>
                 </div>
             </aside>
