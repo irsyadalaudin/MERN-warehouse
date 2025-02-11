@@ -63,7 +63,7 @@ const Warehouse = () => {
                         {/* BUTTON TO TOGGLE FORM */}
                         <button
                             onClick={() => setActiveForm('add')}
-                            className='w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white font-bold rounded-lg shadow-md hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed'
+                            className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed'
                             disabled={activeForm === 'add'}
                         >
                             Add Item
@@ -73,7 +73,7 @@ const Warehouse = () => {
 
                         <button
                             onClick={() => setActiveForm('delete')}
-                            className='w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white font-bold rounded-lg shadow-md hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
+                            className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
                             disabled={activeForm === 'delete'}
                         >
                             Delete Item
@@ -82,7 +82,7 @@ const Warehouse = () => {
 
                         <button
                             onClick={() => setActiveForm('edit')}
-                            className='w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white font-bold rounded-lg shadow-md hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
+                            className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
                             disabled={activeForm === 'edit'}
                         >
                             Edit Item
