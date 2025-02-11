@@ -55,60 +55,74 @@ const AddItem = ({ setActiveForm }) => {
         <>
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
-                    <label>
+                    {/* <label>
                         File:
                         <input 
                             type='file'
                             onChange={(e) => setFile(e.target.files[0])}
+                            className='rounded-lg appearance-none p-2'
+                        />
+                    </label> */}
+                    {/* <label className='mt-1 pl-2 block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'> */}
+                    <label className='block mt-1 pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
+                        Upload File
+                        <input 
+                            type='file'
+                            onChange={(e) => setFile(e.target.files[0])}
+                            className='hidden'
                         />
                     </label>
-                    <label className='mt-3 block text-sm font-medium text-gray-700'>
-                        Item Name:
+                    <label className='block'>
+                        {/* Item Name: */}
                         <input
+                            placeholder='Item Name'
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                            className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
-                    <label className='block text-sm font-medium text-gray-700'>
-                        Weight (in Kgs):
+                    <label className='block'>
+                        {/* Weight (in Kgs): */}
                         <input
+                            placeholder='Weights (in Kgs)'
                             type='number'
                             value={weight}
                             onChange={(e) => setWeight(e.target.value)}
-                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                            className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
-                    <label className='block text-sm font-medium text-gray-700'>
-                        Additional Info:
+                    <label className='block'>
+                        {/* Additional Info: */}
                         <input
+                            placeholder='Additional Info'
                             type='text' 
                             value={info}
                             onChange={(e) => setInfo(e.target.value)}
-                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                            className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
-                    <label className='block text-sm font-medium text-gray-700'>
-                        Quantity:
+                    <label className='block'>
+                        {/* Quantity: */}
                         <input
+                            placeholder='Quantity'
                             type='number'
                             value={quantity}
                             onChange={(e) => setQuantity(e.target.value)}
-                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                            className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
                     <div className='flex justify-between'>
                         <button
                             type='button'
                             onClick={() => setActiveForm()}
-                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                            className='mb-5 py-2 px-4 bg-gradient-to-r from-cyan-800 to-cyan-600 text-white font-semibold rounded-md shadow-md hover:from-cyan-900 hover:to-cyan-700 transition-all'
                         >
                             ⬅ Go Back
                         </button>
                         <button
                             type='submit'
-                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                            className='mb-5 py-2 px-4 bg-gradient-to-r from-cyan-800 to-cyan-600 text-white font-semibold rounded-md shadow-md hover:from-cyan-900 hover:to-cyan-700 transition-all'
                         >
                             Enter
                         </button>
@@ -119,7 +133,6 @@ const AddItem = ({ setActiveForm }) => {
             )}
         </>
     )
-    
 }
 
 /** PROP VALIDATION FOR setActiveForm */
