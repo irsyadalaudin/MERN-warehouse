@@ -19,6 +19,8 @@ const Warehouse = () => {
 
                 const data = await response.json()
                 setWarehouse(data)
+                // const sortedData = data.sort((a, b) => a.itemName.localeCompare(b.itemName))
+                // setWarehouse(sortedData)
             } catch (error) {
                 setError(error.message)
             }
@@ -27,7 +29,41 @@ const Warehouse = () => {
     }, [])
 
     return (
-        <div className='flex flex-col lg:flex-row-reverse gap-8 p-8 min-h-screen'>
+        <div className='flex flex-col lg:flex-row gap-8 p-8 min-h-screen'>
+            {/* ASIDE */}
+            <aside className='w-full lg:w-1/4 bg-white p-6 rounded-xl shadow-lg'>
+                <h3 className='text-2xl font-bold mb-6 text-gray-900'>Manage Items</h3>
+                <div className='space-y-3'>
+                    {/* BUTTON TO TOGGLE FORM */}
+                    <button
+                        onClick={() => setActiveForm('add')}
+                        className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed'
+                        disabled={activeForm === 'add'}
+                    >
+                        Add Item
+                    </button>
+                    {/* FORM */}
+                    {activeForm === 'add' && <AddItem setActiveForm={setActiveForm} />}
+
+                    <button
+                        onClick={() => setActiveForm('delete')}
+                        className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
+                        disabled={activeForm === 'delete'}
+                    >
+                        Delete Item
+                    </button>
+                    {activeForm === 'delete' && <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
+
+                    <button
+                        onClick={() => setActiveForm('edit')}
+                        className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
+                        disabled={activeForm === 'edit'}
+                    >
+                        Edit Item
+                    </button>
+                    {activeForm === 'edit' && <EditItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
+                </div>
+            </aside>
             {/* MAIN */}
             <div className='flex-1 lg:w-3/4'>
                 <h2 className='text-3xl font-bold mb-8 text-gray-900 pb-4'>Warehouse Items</h2>
@@ -54,43 +90,6 @@ const Warehouse = () => {
                     <div className='text-red-600 mt-6 font-medium'>Error: {error}</div>
                 )}
             </div>
-
-            {/* ASIDE */}
-            <aside className='w-full lg:w-1/4 bg-white p-6 rounded-xl shadow-lg'>
-                <h3 className='text-2xl font-bold mb-6 text-gray-900'>Manage Items</h3>
-                <div className='space-y-6'>
-                    <div>
-                        {/* BUTTON TO TOGGLE FORM */}
-                        <button
-                            onClick={() => setActiveForm('add')}
-                            className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed'
-                            disabled={activeForm === 'add'}
-                        >
-                            Add Item
-                        </button>
-                        {/* FORM */}
-                        {activeForm === 'add' && <AddItem setActiveForm={setActiveForm} />}
-
-                        <button
-                            onClick={() => setActiveForm('delete')}
-                            className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
-                            disabled={activeForm === 'delete'}
-                        >
-                            Delete Item
-                        </button>
-                        {activeForm === 'delete' && <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
-
-                        <button
-                            onClick={() => setActiveForm('edit')}
-                            className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
-                            disabled={activeForm === 'edit'}
-                        >
-                            Edit Item
-                        </button>
-                        {activeForm === 'edit' && <EditItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
-                    </div>
-                </div>
-            </aside>
         </div>
     )
 }
