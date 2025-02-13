@@ -55,25 +55,41 @@ const AddItem = ({ setActiveForm }) => {
         <>
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
-                    <label className='block mt-2 pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
+                    <label htmlFor='uploadFile' className='block mt-2 pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
                         Upload File
-                        <input 
+                        <input
+                            id='uploadFile'
                             type='file'
                             onChange={(e) => setFile(e.target.files[0])}
                             className='hidden'
                         />
                     </label>
-                    <label className='block'>
+                    {/* <label htmlFor='itemName' className='block sr-only'>
+                        Item Name
                         <input
+                            id='itemName'
                             placeholder='Item Name'
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
+                    </label> */}
+                    <label htmlFor='itemName' className='sr-only'>
+                        Item Name
                     </label>
-                    <label className='block'>
+                    <input
+                        id='itemName'
+                        placeholder='Item Name'
+                        type='text'
+                        value={itemName}
+                        onChange={(e) => setItemName(e.target.value)}
+                        className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                    />
+
+                    <label htmlFor='weightsInKgs' className='block'>
                         <input
+                            id='weightsInKgs'
                             placeholder='Weights (in Kgs)'
                             type='number'
                             value={weight}
@@ -81,17 +97,21 @@ const AddItem = ({ setActiveForm }) => {
                             className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
-                    <label className='block'>
+
+                    <label htmlFor='weightDetails' className='block'>
                         <input
-                            placeholder='Package'
+                            id='weightsDetails'
+                            placeholder='Weight details'
                             type='text' 
                             value={info}
                             onChange={(e) => setInfo(e.target.value)}
                             className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </label>
-                    <label className='block'>
+
+                    <label htmlFor='quantity' className='block'>
                         <input
+                            id='quantity'
                             placeholder='Quantity'
                             type='number'
                             value={quantity}
