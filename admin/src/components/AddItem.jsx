@@ -57,13 +57,13 @@ const AddItem = ({ setActiveForm }) => {
                 <form onSubmit={handleSubmit} className='space-y-4'>
                     <label htmlFor='uploadFile' className='block mt-2 pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
                         Upload File
-                        <input
-                            id='uploadFile'
-                            type='file'
-                            onChange={(e) => setFile(e.target.files[0])}
-                            className='hidden'
-                        />
                     </label>
+                    <input
+                        id='uploadFile'
+                        type='file'
+                        onChange={(e) => setFile(e.target.files[0])}
+                        className='hidden'
+                    />
                     {/* <label htmlFor='itemName' className='block sr-only'>
                         Item Name
                         <input
