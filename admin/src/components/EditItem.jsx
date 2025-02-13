@@ -81,21 +81,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
 
             {editValues && (
                 <form onSubmit={handleEdit} className='space-y-4'>
-                    {/* <label className='block mt-2'> */}
-                        {/* Item name: */}
-                        {/* <input
-                            type='text'
-                            value={editValues.itemName}
-                            onChange={(e) => setEditValues({ ...editValues, itemName: e.target.value })}
-                            className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                        /> */}
-                        {/* <input
-                            type='text'
-                            value={editValues.itemName}
-                            onChange={(e) => setEditValues({ ...editValues, itemName: e.target.value })}
-                            placeholder='Edit item name'
-                            className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                        /> */}
                     <div className='relative block mt-2'>
                         <label 
                             htmlFor='itemName'
@@ -110,7 +95,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </div>
-
                     <div className='relative block'>
                         <label 
                             htmlFor='weightsInKgs'
@@ -124,7 +108,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </div>
-
                     <div className='relative block'>
                         <label 
                             htmlFor='weightDetails'
@@ -138,21 +121,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </div>
-
-                    {/* <div className='relative block'>
-                        <label 
-                            htmlFor='packaging'
-                            className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
-                        >
-                            Packaging:
-                        </label>
-                        <input
-                            value={editValues.packaging}
-                            onChange={(e) => setEditValues({ ...editValues, packaging: e.target.value })}
-                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                        />
-                    </div> */}
-
                     <div className='relative block'>
                         <label
                             htmlFor='quantity'
