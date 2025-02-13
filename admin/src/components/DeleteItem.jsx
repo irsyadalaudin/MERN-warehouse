@@ -39,25 +39,29 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         <>
             {!error ? (
                 <form onSubmit={handleDelete} className='space-y-4'>
-                    <label className='block mt-2'>
+                    <div className='mt-2'>
+                        <label htmlFor='NameOfTheItemToDelete' className='sr-only'>
+                            Name of the item to delete
+                        </label>
                         <input
+                            id='NameOfTheItemToDelete'
                             placeholder='Name of the item to delete'
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                        />
-                    </label>
+                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            />
+                    </div>
                     <button
                         type='button'
                         onClick={() => setActiveForm()}
-                        className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
                     >
                         ⬅ Go Back
                     </button>
                     <button
                         type='submit'
-                        className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
+                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
                     >
                         Enter
                     </button>

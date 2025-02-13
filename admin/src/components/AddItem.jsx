@@ -55,72 +55,79 @@ const AddItem = ({ setActiveForm }) => {
         <>
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
-                    <label htmlFor='UploadFile' className='block mt-2 pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
-                        Upload File
-                    </label>
-                    <input
-                        id='UploadFile'
-                        type='file'
-                        onChange={(e) => setFile(e.target.files[0])}
-                        className='hidden'
-                    />
-                    <label htmlFor='itemName' className='sr-only'>
-                        Item Name
-                    </label>
-                    <input
-                        id='ItemName'
-                        placeholder='Item Name'
-                        type='text'
-                        value={itemName}
-                        onChange={(e) => setItemName(e.target.value)}
-                        className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                    />
-
-                    <label htmlFor='weightsInKgs' className='sr-only block'>
-                        Weights in Kgs
-                    </label>
-                    <input
-                        id='WeightsInKgs'
-                        placeholder='Weights (in Kgs)'
-                        type='number'
-                        value={weight}
-                        onChange={(e) => setWeight(e.target.value)}
-                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                    />
-
-                    <label htmlFor='WeightDetails' className='sr-only block'>
-                        Weight Details
-                    </label>
-                    <input
-                        id='WeightsDetails'
-                        placeholder='Weight details'
-                        type='text' 
-                        value={weightDetails}
-                        onChange={(e) => setWeightDetails(e.target.value)}
-                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                    />
-
-                    <label htmlFor='Quantity' className='sr-only block'>
-                        Quantity
-                    </label>
-                    <input
-                        id='Quantity'
-                        placeholder='Quantity'
-                        type='number'
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                    />
+                    <div className='mt-2'>
+                        <label htmlFor='UploadFile' className='pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
+                            Upload File
+                        </label>
+                        <input
+                            id='UploadFile'
+                            type='file'
+                            onChange={(e) => setFile(e.target.files[0])}
+                            className='hidden'
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='itemName' className='sr-only'>
+                            Item Name
+                        </label>
+                        <input
+                            id='ItemName'
+                            placeholder='Item Name'
+                            type='text'
+                            value={itemName}
+                            onChange={(e) => setItemName(e.target.value)}
+                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='weightsInKgs' className='sr-only'>
+                            Weights in Kgs
+                        </label>
+                        <input
+                            id='WeightsInKgs'
+                            placeholder='Weights (in Kgs)'
+                            type='number'
+                            value={weight}
+                            onChange={(e) => setWeight(e.target.value)}
+                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='WeightDetails' className='sr-only'>
+                            Weight Details
+                        </label>
+                        <input
+                            id='WeightsDetails'
+                            placeholder='Weight details'
+                            type='text' 
+                            value={weightDetails}
+                            onChange={(e) => setWeightDetails(e.target.value)}
+                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            />
+                    </div>
+                    <div>
+                        <label htmlFor='Quantity' className='sr-only'>
+                            Quantity
+                        </label>
+                        <input
+                            id='Quantity'
+                            placeholder='Quantity'
+                            type='number'
+                            value={quantity}
+                            onChange={(e) => setQuantity(e.target.value)}
+                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                        />
+                    </div>
                     <button
                         type='button'
                         onClick={() => setActiveForm()}
-                        className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
                     >
                         ⬅ Go Back
                     </button>
                     <button
                         type='submit'
-                        className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
+                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
                     >
                         Enter
                     </button>
