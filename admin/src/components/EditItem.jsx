@@ -51,30 +51,29 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         <>
             {!error ? (
                 <form onSubmit={handleFind} className='space-y-4'>
-                    <label className='mt-3 block text-sm font-medium text-gray-700'>
-                        Which item you want to edit:
+                    <label htmlFor='whichItemYouWantToEdit' className='block mt-3'>
+                        </label>
                         <input
+                            id='whichItemYouWantToEdit'
+                            placeholder='Which item you want to edit'
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
+                            className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
-                    </label>
-                    <div className='flex justify-between'>
-                        <button
-                            type='button'
-                            onClick={() => setActiveForm()}
-                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                        >
-                            ⬅ Go Back
-                        </button>
-                        <button
-                            type='submit'
-                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                        >
-                            Enter
-                        </button>
-                    </div>
+                    <button
+                        type='button'
+                        onClick={() => setActiveForm()}
+                        className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                    >
+                        ⬅ Go Back
+                    </button>
+                    <button
+                        type='submit'
+                        className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
+                    >
+                        Enter
+                    </button>
                 </form>
             ) : (
                 <div>error: {error}</div>
@@ -82,47 +81,105 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
 
             {editValues && (
                 <form onSubmit={handleEdit} className='space-y-4'>
-                    <label className='block text-sm font-medium text-gray-700'>
-                        Item name:
-                        <input 
+                    {/* <label className='block mt-2'> */}
+                        {/* Item name: */}
+                        {/* <input
                             type='text'
                             value={editValues.itemName}
                             onChange={(e) => setEditValues({ ...editValues, itemName: e.target.value })}
-                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
+                            className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                        /> */}
+                        {/* <input
+                            type='text'
+                            value={editValues.itemName}
+                            onChange={(e) => setEditValues({ ...editValues, itemName: e.target.value })}
+                            placeholder='Edit item name'
+                            className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                        /> */}
+                    <div className='relative block mt-2'>
+                        <label 
+                            htmlFor='itemName'
+                            className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
+                        >
+                            Edit item name:
+                        </label>
+                        <input
+                            type='text'
+                            value={editValues.itemName}
+                            onChange={(e) => setEditValues({ ...editValues, itemName: e.target.value })}
+                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
-                    </label>
-                    <label>
-                        Quantity:
+                    </div>
+
+                    <div className='relative block'>
+                        <label 
+                            htmlFor='weightsInKgs'
+                            className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
+                        >
+                            Weights in (Kgs):
+                        </label>
+                        <input
+                            value={editValues.weight}
+                            onChange={(e) => setEditValues({ ...editValues, weight: e.target.value })}
+                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                        />
+                    </div>
+
+                    <div className='relative block'>
+                        <label 
+                            htmlFor='weightDetails'
+                            className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
+                        >
+                            Weight Details:
+                        </label>
                         <input 
+                            value={editValues.weightDetails}
+                            onChange={(e) => setEditValues({ ...editValues, weightDetails: e.target.value })}
+                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                        />
+                    </div>
+
+                    {/* <div className='relative block'>
+                        <label 
+                            htmlFor='packaging'
+                            className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
+                        >
+                            Packaging:
+                        </label>
+                        <input
+                            value={editValues.packaging}
+                            onChange={(e) => setEditValues({ ...editValues, packaging: e.target.value })}
+                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                        />
+                    </div> */}
+
+                    <div className='relative block'>
+                        <label
+                            htmlFor='quantity'
+                            className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
+                        >
+                            Quantity:
+                        </label>
+                        <input
                             type='number'
                             value={editValues.quantity}
                             onChange={(e) => setEditValues({ ...editValues, quantity: e.target.value })}
-                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
+                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
-                    </label>
-                    <label>
-                        Price:
-                        <input
-                            type='number'
-                            value={editValues.price}
-                            onChange={(e) => setEditValues({ ...editValues, price: e.target.value })}
-                            className='mt-1 block w-full py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-idnigo-500 focus:border-500'
-                        />
-                    </label>
-                    <div className='flex justify-between'>
-                        <button
-                            onClick={() => setActiveForm()}
-                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                        >
-                            ⬅ Go Back
-                        </button>
-                        <button
-                            type='submit'
-                            className='mb-5 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                        >
-                            Enter
-                        </button>
                     </div>
+                    <button
+                        type='button'
+                        onClick={() => setActiveForm()}
+                        className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                    >
+                        ⬅ Go Back
+                    </button>
+                    <button
+                        type='submit'
+                        className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
+                    >
+                        Enter
+                    </button>
                 </form>
             )}
         </>
