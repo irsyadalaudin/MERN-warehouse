@@ -51,7 +51,9 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         <>
             {!error ? (
                 <form onSubmit={handleFind} className='space-y-4'>
-                    <label htmlFor='whichItemYouWantToEdit' className='block mt-3'>
+                    <div className='mt-2'>
+                        <label htmlFor='whichItemYouWantToEdit' className='sr-only'>
+                            Which item you want to edit
                         </label>
                         <input
                             id='whichItemYouWantToEdit'
@@ -59,18 +61,19 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
+                    </div>
                     <button
                         type='button'
                         onClick={() => setActiveForm()}
-                        className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                        className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
                     >
                         ⬅ Go Back
                     </button>
                     <button
                         type='submit'
-                        className='text-sm block w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
+                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
                     >
                         Enter
                     </button>
@@ -81,7 +84,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
 
             {editValues && (
                 <form onSubmit={handleEdit} className='space-y-4'>
-                    <div className='relative block mt-2'>
+                    <div className='relative mt-2'>
                         <label 
                             htmlFor='itemName'
                             className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
@@ -92,10 +95,10 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='text'
                             value={editValues.itemName}
                             onChange={(e) => setEditValues({ ...editValues, itemName: e.target.value })}
-                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </div>
-                    <div className='relative block'>
+                    <div className='relative'>
                         <label 
                             htmlFor='weightsInKgs'
                             className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
@@ -105,10 +108,10 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         <input
                             value={editValues.weight}
                             onChange={(e) => setEditValues({ ...editValues, weight: e.target.value })}
-                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </div>
-                    <div className='relative block'>
+                    <div className='relative'>
                         <label 
                             htmlFor='weightDetails'
                             className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
@@ -118,10 +121,10 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         <input 
                             value={editValues.weightDetails}
                             onChange={(e) => setEditValues({ ...editValues, weightDetails: e.target.value })}
-                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </div>
-                    <div className='relative block'>
+                    <div className='relative'>
                         <label
                             htmlFor='quantity'
                             className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
@@ -132,19 +135,19 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='number'
                             value={editValues.quantity}
                             onChange={(e) => setEditValues({ ...editValues, quantity: e.target.value })}
-                            className='peer text-sm block w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </div>
                     <button
                         type='button'
                         onClick={() => setActiveForm()}
-                        className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                        className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
                     >
                         ⬅ Go Back
                     </button>
                     <button
                         type='submit'
-                        className='pl-2 text-sm block w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
+                        className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
                     >
                         Enter
                     </button>
