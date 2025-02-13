@@ -13,7 +13,7 @@ const WarehouseSchema = new Schema({
         type: Number,
         required: true
     },
-    info: {
+    weightDetails: {
         type: String,
         required: false
     },

@@ -31,13 +31,13 @@ const getWarehouse = async (req, res) => {
 
 /** CREATE A NEW WAREHOUSE ITEM */
 const createWarehouse = async (req, res) => {
-    const {itemName, quantity, info, weight} = req.body
+    const {itemName, quantity, weight, weightDetails} = req.body
 
     // IF A FILE IS UPLOADED, SAVE ITS path; OTHERWISE, SET FILE TO null
     const file = req.file ? `/images/${req.file.filename}` : null
 
     try {
-        const warehouse = await Warehouse.create({itemName, quantity, info, weight, file})
+        const warehouse = await Warehouse.create({itemName, quantity, weight, weightDetails, file})
         res.status(200).json(warehouse)
     } catch {
         res.status(400).json({message: 'an error occurred while crearting the warehouse item!'})

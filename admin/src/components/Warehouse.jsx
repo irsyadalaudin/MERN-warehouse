@@ -45,7 +45,7 @@ const Warehouse = () => {
                                 />
                                 <h3 className='text-xl font-bold text-gray-900 mb-2'>{item.itemName}</h3>
                                 <p className='text-gray-700 mb-1'>{item.weight}kg</p>
-                                <p className='text-gray-700 mb-1'>{item.info}</p>
+                                <p className='text-gray-700 mb-1'>{item.weightDetails}</p>
                                 <p className='text-gray-700 font-medium'>Quantity: {item.quantity}</p>
                             </div>
                         ))}
