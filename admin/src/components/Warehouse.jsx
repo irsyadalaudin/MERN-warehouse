@@ -66,7 +66,11 @@ const Warehouse = () => {
             </aside>
             {/* MAIN */}
             <div className='flex-1 lg:w-3/4'>
-                <h2 className='text-3xl font-bold mb-8 text-gray-900 pb-4'>Warehouse Items</h2>
+                <div className='flex item-center justify-between mb-6'>
+                    <h2 className='text-3xl font-bold text-gray-900'>Warehouse Item</h2>
+                    <button className='text-xl px-5 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200' type='button'>Sort</button>
+                </div>
+
                 {!error ? (
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
                         {warehouse.map((item) => (
