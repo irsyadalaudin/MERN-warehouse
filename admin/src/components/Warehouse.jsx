@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import AddItem from './AddItem'
 import DeleteItem from './DeleteItem'
 import EditItem from './EditItem'
@@ -17,6 +17,20 @@ const Warehouse = () => {
 
     const sortedWarehouse = sortItems(warehouse, sortOption)
 
+    const dropdownRef = useRef()
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if(dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setDropdownVisible(false)
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside)
+
+        return() => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
 
     useEffect(() => {
         const fetchWarehouseItem = async () => {
@@ -74,11 +88,13 @@ const Warehouse = () => {
                     {activeForm === 'edit' && <EditItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
                 </div>
             </aside>
+
             {/* MAIN */}
             <div className='flex-1 lg:w-3/4'>
                 <div className='flex item-center justify-between'>
                     <h2 className='text-3xl font-bold text-gray-900'>Warehouse Item</h2>
                     <button
+                        ref={dropdownRef}
                         type='button'
                         onClick={toggleDropdown}
                         className='mb-1 px-5 w-28 text-xl text-white font-bold rounded-lg shadow-lg bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200'
