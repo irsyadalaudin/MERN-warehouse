@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import AddItem from './AddItem'
 import DeleteItem from './DeleteItem'
 import EditItem from './EditItem'
+import sortItems from '../utils/SortItems'
 
 const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
@@ -13,7 +14,7 @@ const Warehouse = () => {
     const toggleDropdown = () => {
         setDropdownVisible(!dropdownVisible)
     }
-
+    /**
     const sortItems = (items, option) => {
         // IF NO SORT OPTION, RETURN AS-IS
         if (!option) {
@@ -36,7 +37,7 @@ const Warehouse = () => {
                     return 0
             }
         })
-    }
+    }*/
 
     const sortedWarehouse = sortItems(warehouse, sortOption)
 
