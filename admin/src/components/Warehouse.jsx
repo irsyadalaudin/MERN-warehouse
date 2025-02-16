@@ -7,6 +7,39 @@ const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
     const [error, setError] = useState()
     const [activeForm, setActiveForm] = useState()
+    const [sortOption, setSortOption] = useState()
+    const [dropdownVisible, setDropdownVisible] = useState(false)
+
+    const toggleDropdown = () => {
+        setDropdownVisible(!dropdownVisible)
+    }
+
+    const sortItems = (items, option) => {
+        // IF NO SORT OPTION, RETURN AS-IS
+        if (!option) {
+            return items
+        }
+
+        return [...items].sort((a, b) => {
+            // SWITCH TO DETERMINE HOW TO SORT BASED ON THE PROVIDED OPTION
+            switch (option) {
+                case 'itemNameA-Z':
+                    return a.itemName.localeCompare(b.itemName)
+                case 'itemNameZ-A':
+                    return b.itemName.localeCompare(a.itemName)
+                case 'quantityAsc':
+                    return a.quantity-b.quantity
+                case 'quantityDesc':
+                    return b.quantity-a.quantity
+                // DEFAULT CASE WHEN NO MATCH IS FOUND, RETURN 0 (NO CHANGE IN ORDER)
+                default:
+                    return 0
+            }
+        })
+    }
+
+    const sortedWarehouse = sortItems(warehouse, sortOption)
+
 
     useEffect(() => {
         const fetchWarehouseItem = async () => {
@@ -19,8 +52,8 @@ const Warehouse = () => {
 
                 const data = await response.json()
                 setWarehouse(data)
-                // const sortedData = data.sort((a, b) => a.itemName.localeCompare(b.itemName))
-                // setWarehouse(sortedData)
+                const sortedData = data.sort((a, b) => a.itemName.localeCompare(b.itemName))
+                setWarehouse(sortedData)
             } catch (error) {
                 setError(error.message)
             }
@@ -66,17 +99,56 @@ const Warehouse = () => {
             </aside>
             {/* MAIN */}
             <div className='flex-1 lg:w-3/4'>
-                <div className='flex item-center justify-between mb-6'>
+                <div className='flex item-center justify-between'>
                     <h2 className='text-3xl font-bold text-gray-900'>Warehouse Item</h2>
-                    <button className='text-xl px-5 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200' type='button'>Sort</button>
+                    <button
+                        type='button'
+                        onClick={toggleDropdown}
+                        className='mb-1 px-5 w-28 text-xl text-white font-bold rounded-lg shadow-lg bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200'
+                        >
+                            Sort
+                    </button>
                 </div>
+                {dropdownVisible && (
+                    <div className='flex flex-col justify-self-end shadow-xl'>
+                        <button 
+                            type='button'
+                            onClick={() => setSortOption('itemNameA-Z')}
+                            className='w-28 px-5 text-md text-white font-bold rounded-t-lg bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                            >
+                                A-Z
+                        </button>
+                        <button 
+                            type='button'
+                            onClick={() => setSortOption('itemNameZ-A')}
+                            className='w-28 px-5 text-md text-white font-bold bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                            >
+                                Z-A
+                        </button>
+                        <button 
+                            type='button'
+                            onClick={() => setSortOption('quantityAsc')}
+                            className='w-28 px-5 text-md text-white font-bold bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                            >
+                                0-1
+                        000</button>
+                        <button 
+                            type='button'
+                            onClick={() => setSortOption('quantityDesc')}
+                            className='w-28 px-5 text-md text-white font-bold rounded-b-lg shadow-xl bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                            >
+                                100
+                        0-0</button>
+                    </div>
+                )}
 
                 {!error ? (
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-                        {warehouse.map((item) => (
+                        {/* {warehouse.map((item) => ( */}
+                        {sortedWarehouse.map((item) => (
                             <div
                                 key={item._id}
-                                className='bg-white border border-gray-200 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1'
+                                className='bg-white border border-gray-200 mt-6 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1'
                             >
                                 <img
                                     src={`http://localhost:4000${item.file}`}
