@@ -102,8 +102,9 @@ const Warehouse = () => {
                             Sort
                     </button>
                 </div>
+
                 {dropdownVisible && (
-                    <div className='flex flex-col justify-self-end shadow-xl'>
+                    <div ref={dropdownRef} className='flex flex-col justify-self-end shadow-xl'>
                         <button 
                             type='button'
                             onClick={() => setSortOption('itemNameA-Z')}
