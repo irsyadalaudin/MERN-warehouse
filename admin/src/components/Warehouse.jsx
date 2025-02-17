@@ -8,7 +8,7 @@ const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
     const [error, setError] = useState()
     const [activeForm, setActiveForm] = useState()
-    const [sortOption, setSortOption] = useState()
+    const [sortOption, setSortOption] = useState('itemNameA-Z')
     const [dropdownVisible, setDropdownVisible] = useState(false)
 
     const toggleDropdown = () => {
@@ -108,31 +108,47 @@ const Warehouse = () => {
                         <button 
                             type='button'
                             onClick={() => setSortOption('itemNameA-Z')}
-                            className='w-28 px-5 text-md text-white font-bold rounded-t-lg bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                            className={`w-28 px-5 text-md text-white font-bold rounded-t-lg transition-all ${
+                                sortOption === 'itemNameA-Z'
+                                    ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
+                                    : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                            }`}
                             >
                                 A-Z
                         </button>
                         <button 
                             type='button'
                             onClick={() => setSortOption('itemNameZ-A')}
-                            className='w-28 px-5 text-md text-white font-bold bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                            className={`w-28 px-5 text-md text-white font-bold transition-all ${
+                                sortOption === 'itemNameZ-A'
+                                    ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
+                                    : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                            }`}
                             >
                                 Z-A
                         </button>
                         <button 
                             type='button'
                             onClick={() => setSortOption('quantityAsc')}
-                            className='w-28 px-5 text-md text-white font-bold bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                            className={`w-28 px-5 text-md text-white font-bold transition-all ${
+                                sortOption === 'quantityAsc'
+                                    ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
+                                    : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                            }`}
                             >
-                                0-1
-                        000</button>
+                                0-1000
+                        </button>
                         <button 
                             type='button'
                             onClick={() => setSortOption('quantityDesc')}
-                            className='w-28 px-5 text-md text-white font-bold rounded-b-lg shadow-xl bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                            className={`w-28 px-5 text-md text-white font-bold rounded-b-lg transition-all ${
+                                sortOption === 'quantityDesc'
+                                    ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
+                                    : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                            }`}
                             >
-                                100
-                        0-0</button>
+                                1000-0
+                        </button>
                     </div>
                 )}
 
