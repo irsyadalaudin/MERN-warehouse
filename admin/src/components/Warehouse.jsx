@@ -12,7 +12,8 @@ const Warehouse = () => {
     const [dropdownVisible, setDropdownVisible] = useState(false)
 
     const toggleDropdown = () => {
-        setDropdownVisible(!dropdownVisible)
+        // setDropdownVisible(!dropdownVisible)
+        setDropdownVisible((prev) => !prev)
     }
 
     const sortedWarehouse = sortItems(warehouse, sortOption)
@@ -30,7 +31,7 @@ const Warehouse = () => {
         return() => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
-    }, [])
+    }, [dropdownRef])
 
     useEffect(() => {
         const fetchWarehouseItem = async () => {
@@ -90,11 +91,11 @@ const Warehouse = () => {
             </aside>
 
             {/* MAIN */}
-            <div className='flex-1 lg:w-3/4'>
+            <div ref={dropdownRef} className='flex-1 lg:w-3/4'>
                 <div className='flex item-center justify-between'>
                     <h2 className='text-3xl font-bold text-gray-900'>Warehouse Item</h2>
                     <button
-                        ref={dropdownRef}
+                        // ref={dropdownRef}
                         type='button'
                         onClick={toggleDropdown}
                         className='mb-1 px-5 w-28 text-xl text-white font-bold rounded-lg shadow-lg bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200'
@@ -105,9 +106,12 @@ const Warehouse = () => {
 
                 {dropdownVisible && (
                     <div ref={dropdownRef} className='flex flex-col justify-self-end shadow-xl'>
-                        <button 
+                        <button
                             type='button'
-                            onClick={() => setSortOption('itemNameA-Z')}
+                            onClick={() => {
+                                setSortOption('itemNameA-Z')
+                                setDropdownVisible(false)
+                            }}
                             className={`w-28 px-5 text-md text-white font-bold rounded-t-lg transition-all ${
                                 sortOption === 'itemNameA-Z'
                                     ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
@@ -118,7 +122,10 @@ const Warehouse = () => {
                         </button>
                         <button 
                             type='button'
-                            onClick={() => setSortOption('itemNameZ-A')}
+                            onClick={() => {
+                                setSortOption('itemNameZ-A')
+                                setDropdownVisible(false)
+                            }}
                             className={`w-28 px-5 text-md text-white font-bold transition-all ${
                                 sortOption === 'itemNameZ-A'
                                     ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
@@ -129,7 +136,10 @@ const Warehouse = () => {
                         </button>
                         <button 
                             type='button'
-                            onClick={() => setSortOption('quantityAsc')}
+                            onClick={() => {
+                                setSortOption('quantityAsc')
+                                setDropdownVisible(false)
+                            }}
                             className={`w-28 px-5 text-md text-white font-bold transition-all ${
                                 sortOption === 'quantityAsc'
                                     ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
@@ -140,7 +150,10 @@ const Warehouse = () => {
                         </button>
                         <button 
                             type='button'
-                            onClick={() => setSortOption('quantityDesc')}
+                            onClick={() => {
+                                setSortOption('quantityDesc')
+                                setDropdownVisible(false)
+                            }}
                             className={`w-28 px-5 text-md text-white font-bold rounded-b-lg transition-all ${
                                 sortOption === 'quantityDesc'
                                     ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
