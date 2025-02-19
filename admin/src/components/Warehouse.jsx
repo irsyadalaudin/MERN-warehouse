@@ -90,9 +90,9 @@ const Warehouse = () => {
                         <button
                             type='button'
                             onClick={toggleDropdown}
-                            className='mb-1 px-5 w-28 text-xl text-white font-bold rounded-lg shadow-lg bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200'
+                            className='mb-1 w-40 text-xl text-white font-bold rounded-lg shadow-lg bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200'
                             >
-                                Sort
+                                Sort by
                         </button>
                     </div>
 
@@ -104,13 +104,13 @@ const Warehouse = () => {
                                     setSortOption('itemNameA-Z')
                                     setDropdownVisible(false)
                                 }}
-                                className={`w-28 px-5 text-md text-white font-bold rounded-t-lg transition-all ${
+                                className={`w-40 px-5 text-md text-white font-bold rounded-t-lg transition-all ${
                                     sortOption === 'itemNameA-Z'
                                         ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
                                         : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                 }`}
                                 >
-                                    A-Z
+                                    Item Name A-Z
                             </button>
                             <button 
                                 type='button'
@@ -118,13 +118,13 @@ const Warehouse = () => {
                                     setSortOption('itemNameZ-A')
                                     setDropdownVisible(false)
                                 }}
-                                className={`w-28 px-5 text-md text-white font-bold transition-all ${
+                                className={`w-40 px-5 text-md text-white font-bold transition-all ${
                                     sortOption === 'itemNameZ-A'
                                         ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
                                         : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                 }`}
                                 >
-                                    Z-A
+                                    Item Name Z-A
                             </button>
                             <button 
                                 type='button'
@@ -132,13 +132,13 @@ const Warehouse = () => {
                                     setSortOption('quantityAsc')
                                     setDropdownVisible(false)
                                 }}
-                                className={`w-28 px-5 text-md text-white font-bold transition-all ${
+                                className={`w-40 px-5 text-md text-white font-bold transition-all ${
                                     sortOption === 'quantityAsc'
                                         ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
                                         : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                 }`}
                                 >
-                                    0-1000
+                                    Qty Ascending
                             </button>
                             <button 
                                 type='button'
@@ -146,13 +146,13 @@ const Warehouse = () => {
                                     setSortOption('quantityDesc')
                                     setDropdownVisible(false)
                                 }}
-                                className={`w-28 px-5 text-md text-white font-bold rounded-b-lg transition-all ${
+                                className={`w-40 px-5 text-md text-white font-bold rounded-b-lg transition-all ${
                                     sortOption === 'quantityDesc'
                                         ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
                                         : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                 }`}
                                 >
-                                    1000-0
+                                    Qty Descending
                             </button>
                         </div>
                     )}
