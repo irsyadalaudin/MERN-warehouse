@@ -90,21 +90,25 @@ const Warehouse = () => {
                         <button
                             type='button'
                             onClick={toggleDropdown}
-                            className='mb-1 w-40 text-xl text-white font-bold rounded-lg shadow-lg bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200'
+                            className={`mb-0.5 w-40 text-xl text-white font-bold rounded-t-lg shadow-lg transition-all ${
+                                dropdownVisible
+                                    ? 'opacity-35 bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                                    : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                            }`}
                             >
                                 Sort by
                         </button>
                     </div>
 
                     {dropdownVisible && (
-                        <div className='flex flex-col justify-self-end shadow-xl'>
+                        <div className='gap-y-0.5 rounded-b-lg flex flex-col justify-self-end shadow-xl'>
                             <button
                                 type='button'
                                 onClick={() => {
                                     setSortOption('itemNameA-Z')
                                     setDropdownVisible(false)
                                 }}
-                                className={`w-40 px-5 text-md text-white font-bold rounded-t-lg transition-all ${
+                                className={`w-40 px-5 text-md text-white font-bold transition-all ${
                                     sortOption === 'itemNameA-Z'
                                         ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
                                         : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
