@@ -93,8 +93,7 @@ const AddItem = ({ setActiveForm }) => {
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
                     <div className='mt-2'>
-                        <label htmlFor='UploadFile' className='pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                        >
+                        <label htmlFor='UploadFile' className='pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
                             Upload File
                         </label>
                         <input
