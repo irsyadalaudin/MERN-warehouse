@@ -8,9 +8,43 @@ const AddItem = ({ setActiveForm }) => {
     const [weightDetails, setWeightDetails] = useState('')
     const [error, setError] = useState()
     const [file, setFile] = useState()
+    const [formErrors, setFormErrors] = useState({
+        itemName: '',
+        weight: '',
+        quantity: ''
+    })
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        setFormErrors({
+            itemName: '',
+            weight: '',
+            quantity: ''
+        })
+
+        let hasError = false
+        const newErrors = {}
+
+        if (!itemName) {
+            hasError = true
+            newErrors.itemName = 'item name is required!' 
+        }
+
+        if (!weight || weight <= 0) {
+            hasError = true
+            newErrors.weight = 'weight is required!'
+        }
+
+        if (!quantity || quantity <= 0) {
+            hasError = true
+            newErrors.quantity = 'quantity is required!'
+        }
+
+        if (hasError) {
+            setFormErrors(newErrors)
+            return
+        }
 
         // CREATE A NEW FormData OBJECT AND APPEND THE ITEM DETAILS (itemName, quantity, weight)
         const formData = new FormData()
@@ -23,7 +57,7 @@ const AddItem = ({ setActiveForm }) => {
         if (file) {
             formData.append('file', file)
         }
-
+        
         try {
             const response = await fetch('/api/warehouse', {
                 method: 'POST',
@@ -51,6 +85,7 @@ const AddItem = ({ setActiveForm }) => {
         } catch (error) {
             setError(error.message)
         }
+
     }
 
     return (
@@ -78,8 +113,10 @@ const AddItem = ({ setActiveForm }) => {
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            // className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border-red-500' : ''}`}
+                            className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg ${formErrors.itemName ? 'border-red-500' : ''}`}
                         />
+                        {formErrors.itemName && <div className='text-red-500'>{formErrors.itemName}</div>}
                     </div>
                     <div>
                         <label htmlFor='weightsInKgs' className='sr-only'>
@@ -93,6 +130,7 @@ const AddItem = ({ setActiveForm }) => {
                             onChange={(e) => setWeight(e.target.value)}
                             className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
+                        {formErrors.weight && <div className='text-red-500'>{formErrors.weight}</div>}
                     </div>
                     <div>
                         <label htmlFor='WeightDetails' className='sr-only'>
@@ -119,6 +157,7 @@ const AddItem = ({ setActiveForm }) => {
                             onChange={(e) => setQuantity(e.target.value)}
                             className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
+                        {formErrors.quantity && <div className='text-red-500'>{formErrors.quantity}</div>}
                     </div>
                     <button
                         type='button'
