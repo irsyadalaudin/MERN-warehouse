@@ -28,17 +28,17 @@ const AddItem = ({ setActiveForm }) => {
 
         if (!itemName) {
             hasError = true
-            newErrors.itemName = 'item name is required!' 
+            newErrors.itemName = 'item name is required' 
         }
 
         if (!weight || weight <= 0) {
             hasError = true
-            newErrors.weight = 'weight is required!'
+            newErrors.weight = 'weight is required'
         }
 
         if (!quantity || quantity <= 0) {
             hasError = true
-            newErrors.quantity = 'quantity is required!'
+            newErrors.quantity = 'quantity is required'
         }
 
         if (hasError) {
@@ -93,7 +93,8 @@ const AddItem = ({ setActiveForm }) => {
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
                     <div className='mt-2'>
-                        <label htmlFor='UploadFile' className='pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
+                        <label htmlFor='UploadFile' className='pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                        >
                             Upload File
                         </label>
                         <input
@@ -113,8 +114,7 @@ const AddItem = ({ setActiveForm }) => {
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            // className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border-red-500' : ''}`}
-                            className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg ${formErrors.itemName ? 'border-red-500' : ''}`}
+                            className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.itemName && <div className='text-red-500'>{formErrors.itemName}</div>}
                     </div>
@@ -128,7 +128,7 @@ const AddItem = ({ setActiveForm }) => {
                             type='number'
                             value={weight}
                             onChange={(e) => setWeight(e.target.value)}
-                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.weight ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.weight && <div className='text-red-500'>{formErrors.weight}</div>}
                     </div>
@@ -155,7 +155,7 @@ const AddItem = ({ setActiveForm }) => {
                             type='number'
                             value={quantity}
                             onChange={(e) => setQuantity(e.target.value)}
-                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.quantity ? 'border border-red-500' : 'border-none'} `}
                         />
                         {formErrors.quantity && <div className='text-red-500'>{formErrors.quantity}</div>}
                     </div>
