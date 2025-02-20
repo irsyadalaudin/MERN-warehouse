@@ -30,12 +30,14 @@ const AddItem = ({ setActiveForm }) => {
                 body: formData
             })
 
-            if (!response.ok) {
-                throw new Error('Error while creating new warehouse item!')
-            }
-
             // PARSE THE RESPONSE BODY AS JSON AND LOG THE SUCCESS MESSAGE WITH THE CREATED ITEM DATA
             const data = await response.json()
+
+            if (!response.ok) {
+                // throw new Error('Error while creating new warehouse item!')
+                throw new Error(data.error || 'Error while creating new warehouse item!')
+            }
+
             console.log('Item has been successfully created:', data)
 
             // RESET FORM FIELDS (itemName, quantity, weight, file, and error) AFTER SUCCESSFUL ITEM CREATION
@@ -63,7 +65,7 @@ const AddItem = ({ setActiveForm }) => {
                             id='UploadFile'
                             type='file'
                             onChange={(e) => setFile(e.target.files[0])}
-                            className='hidden'
+                            // className='hidden'
                         />
                     </div>
                     <div>
