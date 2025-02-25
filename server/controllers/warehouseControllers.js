@@ -44,6 +44,7 @@ const createWarehouse = async (req, res) => {
     }
 }
 
+/** DELETE A NEW WAREHOUSE ITEM */
 const deleteWarehouse = async (req, res) => {
     const { id } = req.params
 
@@ -64,29 +65,40 @@ const deleteWarehouse = async (req, res) => {
     }
 }
 
+/** EDIT A NEW WAREHOUSE ITEM */
 const updateWarehouse = async (req, res) => {
     const { id } = req.params
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
+    if (!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: 'no warehouse item matches the id!'})
     }
 
     try {
-        const warehouse = await Warehouse.findOneAndUpdate({_id:id}, {
-            ...req.body
-        })
+        // CHECK IF THERE ARE NEW FILES UPLOADED
+        const file = req.file ? `/images/${req.file.filename}` : null
+
+        // const warehouse = await Warehouse.findOneAndUpdate({_id:id}, {
+        const warehouse = await Warehouse.findOneAndUpdate(
+            { _id: id },
+            {
+                ...req.body,
+                // IF THERE IS A NEW FILE, SET THE NEW FILE, OTHERWISE KEEP THE OLD FILE
+                // IF THE FILE IS NULL, UNDEFINED KEEPS THE OLD FILE IN THE DB
+                file: file || undefined
+            },
+            // TO RETURN THE LATEST DATA
+            { new: true }
+        )
 
         if (!warehouse) {
-            return res.status(400).json({message: 'no such warehouse item ahs been updated!'})
+            return res.status(400).json({message: 'no such warehouse item has been updated!'})
         } else {
             return res.status(200).json(warehouse)
         }
-    } catch {
-        res.status(500).json({message: 'an occurred while updating the warehouse item!'})
+    } catch (error) {
+        res.status(500).json({message: 'an error occurred while updating the warehouse item!', error})
     }
 }
-
-
 
 export default {
     getWarehouses,

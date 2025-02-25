@@ -28,6 +28,6 @@ router.post('/', multerMiddleware, createWarehouse)
 router.delete('/:id', deleteWarehouse)
 
 /** UPDATE A WAREHOUSE ITEM */
-router.patch('/:id', updateWarehouse)
+router.patch('/:id', multerMiddleware, updateWarehouse)
 
 export default router

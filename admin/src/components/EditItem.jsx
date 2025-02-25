@@ -5,6 +5,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [itemName, setItemName] = useState('')
     const [error, setError] = useState()
     const [editValues, setEditValues] = useState()
+    const [file, setFile] = useState()
 
     const handleFind = (e) => {
         e.preventDefault()
@@ -24,11 +25,22 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const handleEdit = async (e) => {
         e.preventDefault()
 
+        const formData = new FormData()
+        formData.append('itemName', editValues.itemName)
+        formData.append('weight', editValues.weight)
+        formData.append('weightDetails', editValues.weightDetails)
+        formData.append('quantity', editValues.quantity)
+
+        if (file) {
+            formData.append('file', file)
+        }
+
         try {
             const response = await fetch(`/api/warehouse/${editValues._id}`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/JSON' },
-                body: JSON.stringify(editValues)
+                body: formData
+                // headers: { 'Content-Type': 'application/JSON' },
+                // body: JSON.stringify(editValues)
             })
 
             if (!response.ok) {
@@ -38,7 +50,9 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             const updatedItem = await response.json()
             
             /** UPDATE STATE WAREHOUSE */
-            const updatedWarehouse = warehouse.map((item) => item.id === updatedItem._id ? updatedItem : item)
+            const updatedWarehouse = warehouse.map((item) =>
+                item.id === updatedItem._id ? updatedItem : item
+            )
             setWarehouse(updatedWarehouse)
             setEditValues()
             setItemName('')
@@ -85,6 +99,16 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             {editValues && (
                 <form onSubmit={handleEdit} className='space-y-4'>
                     <div className='relative mt-2'>
+                        <label htmlFor='UploadFile' className='pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
+                            Upload File
+                        </label>
+                        <input
+                            type='file'
+                            id='UploadFile'
+                            onChange={(e) => setFile(e.target.files[0])}                     
+                        />
+                    </div>
+                    <div className='mt-2'>
                         <label 
                             htmlFor='itemName'
                             className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
