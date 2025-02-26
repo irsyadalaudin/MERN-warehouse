@@ -5,7 +5,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [itemName, setItemName] = useState('')
     const [error, setError] = useState()
     const [editValues, setEditValues] = useState()
-    const [file, setFile] = useState()
+    const [file, setFile] = useState({})
 
     const handleFind = (e) => {
         e.preventDefault()
