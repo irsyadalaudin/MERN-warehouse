@@ -47,7 +47,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
 
             const updatedItem = await response.json()
             
-            /** UPDATE STATE WAREHOUSE */
+            // UPDATE STATE WAREHOUSE
             const updatedWarehouse = warehouse.map((item) =>
                 item.id === updatedItem._id ? updatedItem : item
             )
