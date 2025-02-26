@@ -18,11 +18,12 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             return
         }
 
+        // IF ITEM IS FOUND, SAVE THE DATA TO editValues AND DISPLAY THE EDIT FORM
         setEditValues(foundItem)
         setItemName('')
         setError()
     }
-    
+
     const handleEdit = async (e) => {
         e.preventDefault()
 
@@ -111,20 +112,27 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             {editValues && (
                 <form onSubmit={handleEdit} className='space-y-4'>
                     <div className='relative mt-2'>
-                        <label htmlFor='UploadFile' className='pl-2 text-sm text-gray-400 w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'>
-                            Upload File
-                        </label>
-                        <input
-                            type='file'
-                            id='UploadFile'
-                            onChange={(e) => setFile(e.target.files[0])}
-                            className='file-input'             
-                        />
-                        <div className='mt-2 text-sm text-gray-600'>
+                        <div className='flex justify-between '>
+                            <label 
+                                htmlFor='UploadFile' 
+                                className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
+                            >
+                                Upload File
+                            </label>
+                            <input
+                                type='file'
+                                id='UploadFile'
+                                onChange={(e) => setFile(e.target.files[0])}
+                                className='file-input peer text-sm w-full pt-4 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'             
+                            />
+                        </div>
+
+                        <div className='mt-1 text-sm text-gray-600'>
                             {existingFileName(editValues.file)}
                         </div>
                     </div>
-                    <div className='mt-2'>
+
+                    <div className='relative'>
                         <label 
                             htmlFor='itemName'
                             className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
