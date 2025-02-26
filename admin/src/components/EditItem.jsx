@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import '../index.css'
 
 const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [itemName, setItemName] = useState('')
@@ -59,6 +60,19 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         }
     }
 
+    const existingFileName = (filePath) => {
+        if (!filePath) {
+            return 'no file uploaded'
+        } else {
+            return filePath.split('/').pop()
+        }
+    }
+    /*
+    const part = filePath.split('/')
+    // ['', 'uploads', 'image.jpg']
+    const element = parts.pop()
+    */
+
     return (
         <>
             {!error ? (
@@ -103,8 +117,12 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         <input
                             type='file'
                             id='UploadFile'
-                            onChange={(e) => setFile(e.target.files[0])}                     
+                            onChange={(e) => setFile(e.target.files[0])}
+                            className='file-input'             
                         />
+                        <div className='mt-2 text-sm text-gray-600'>
+                            {existingFileName(editValues.file)}
+                        </div>
                     </div>
                     <div className='mt-2'>
                         <label 

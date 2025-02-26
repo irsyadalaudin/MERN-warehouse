@@ -32,6 +32,10 @@ h2, h4 {
 	font-weight: 400;
 }
 
+input[type='file']::-webkit-file-upload-button {
+	visibility: hidden
+}
+
 /* @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;
