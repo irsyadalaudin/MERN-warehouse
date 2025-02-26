@@ -77,7 +77,6 @@ const updateWarehouse = async (req, res) => {
         // CHECK IF THERE ARE NEW FILES UPLOADED
         const file = req.file ? `/images/${req.file.filename}` : null
 
-        // const warehouse = await Warehouse.findOneAndUpdate({_id:id}, {
         const warehouse = await Warehouse.findOneAndUpdate(
             { _id: id },
             {

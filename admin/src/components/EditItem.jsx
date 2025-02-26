@@ -39,8 +39,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             const response = await fetch(`/api/warehouse/${editValues._id}`, {
                 method: 'PATCH',
                 body: formData
-                // headers: { 'Content-Type': 'application/JSON' },
-                // body: JSON.stringify(editValues)
             })
 
             if (!response.ok) {
