@@ -114,7 +114,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                                 htmlFor='UploadFile' 
                                 className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
                             >
-                                Upload File
+                                Upload File:
                             </label>
                             <input
                                 type='file'
@@ -185,7 +185,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                     </div>
                     <button
                         type='button'
-                        onClick={() => setActiveForm()}
+                        onClick={() => setIsEditActive(false)}
+                        // onClick={() => setActiveForm()}
                         className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
                     >
                         ⬅ Go Back
