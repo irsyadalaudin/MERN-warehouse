@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ValidateForm from '../utils/ValidateForm'
 import '../index.css'
 
-const AddItem = ({ setActiveForm }) => {
+const AddItem = ({ setActiveForm, setWarehouse }) => {
     const [itemName, setItemName] = useState('')
     const [quantity, setQuantity] = useState('')
     const [weight, setWeight] = useState('')
@@ -60,6 +60,9 @@ const AddItem = ({ setActiveForm }) => {
             }
 
             console.log('Item has been successfully created:', data)
+
+            // ALLOWS TO DISPLAY NEWLY ADDED ITEMS WITHOUT REFRESHING THE BROWSER
+            setWarehouse((prevWarehouse) => [...prevWarehouse, data])
 
             // RESET FORM FIELDS (itemName, quantity, weight, file, and error) AFTER SUCCESSFUL ITEM CREATION
             setItemName('')
@@ -172,7 +175,8 @@ const AddItem = ({ setActiveForm }) => {
 
 /** PROP VALIDATION FOR setActiveForm */
 AddItem.propTypes = {
-    setActiveForm: PropTypes.func.isRequired
+    setActiveForm: PropTypes.func.isRequired,
+    setWarehouse: PropTypes.func.isRequired
 }
 
 export default AddItem
