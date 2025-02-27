@@ -93,7 +93,7 @@ const AddItem = ({ setActiveForm }) => {
         <>
             {!error ? (
                 <form onSubmit={handleSubmit} className='space-y-4'>
-                    <div className='relative mt-2 flex justify-between'>
+                    <div className='relative mt-2'>
                         <label
                             htmlFor='UploadFile'
                             className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
