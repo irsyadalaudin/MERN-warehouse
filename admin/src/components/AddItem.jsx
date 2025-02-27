@@ -55,7 +55,6 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
             const data = await response.json()
 
             if (!response.ok) {
-                // throw new Error('Error while creating new warehouse item!')
                 throw new Error(data.error || 'Error while creating new warehouse item!')
             }
 
