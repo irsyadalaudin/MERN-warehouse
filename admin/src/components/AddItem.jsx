@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import ValidateForm from '../utils/ValidateForm'
 import '../index.css'
 
 const AddItem = ({ setActiveForm }) => {
@@ -14,16 +15,16 @@ const AddItem = ({ setActiveForm }) => {
         weight: '',
         quantity: ''
     })
-
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        
         setFormErrors({
             itemName: '',
             weight: '',
             quantity: ''
-        })
+            })
 
+        /*
         let hasError = false
         const newErrors = {}
 
@@ -41,6 +42,9 @@ const AddItem = ({ setActiveForm }) => {
             hasError = true
             newErrors.quantity = 'quantity is required'
         }
+        */
+
+        const { hasError, newErrors } = ValidateForm({ itemName, weight, quantity })
 
         if (hasError) {
             setFormErrors(newErrors)
@@ -146,7 +150,7 @@ const AddItem = ({ setActiveForm }) => {
                             value={weightDetails}
                             onChange={(e) => setWeightDetails(e.target.value)}
                             className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                            />
+                        />
                     </div>
                     <div>
                         <label htmlFor='Quantity' className='sr-only'>
