@@ -24,26 +24,7 @@ const AddItem = ({ setActiveForm }) => {
             quantity: ''
             })
 
-        /*
-        let hasError = false
-        const newErrors = {}
-
-        if (!itemName) {
-            hasError = true
-            newErrors.itemName = 'item name is required' 
-        }
-
-        if (!weight || weight <= 0) {
-            hasError = true
-            newErrors.weight = 'weight is required'
-        }
-
-        if (!quantity || quantity <= 0) {
-            hasError = true
-            newErrors.quantity = 'quantity is required'
-        }
-        */
-
+        // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
         const { hasError, newErrors } = ValidateForm({ itemName, weight, quantity })
 
         if (hasError) {
