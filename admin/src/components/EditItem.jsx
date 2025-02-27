@@ -7,6 +7,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [error, setError] = useState()
     const [editValues, setEditValues] = useState()
     const [file, setFile] = useState({})
+    const [isEditActive, setIsEditActive] = useState(false)
 
     const handleFind = (e) => {
         e.preventDefault()
@@ -22,6 +23,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         setEditValues(foundItem)
         setItemName('')
         setError()
+        setIsEditActive(true)
     }
 
     const handleEdit = async (e) => {
@@ -76,7 +78,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
 
     return (
         <>
-            {!error ? (
+            {!isEditActive && !error ? (
                 <form onSubmit={handleFind} className='space-y-4'>
                     <div className='mt-2'>
                         <label htmlFor='whichItemYouWantToEdit' className='sr-only'>
@@ -106,10 +108,10 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                     </button>
                 </form>
             ) : (
-                <div>error: {error}</div>
+                <div>{error}</div>
             )}
 
-            {editValues && (
+            {isEditActive && editValues && (
                 <form onSubmit={handleEdit} className='space-y-4'>
                     <div className='relative mt-2'>
                         <div className='flex justify-between '>
