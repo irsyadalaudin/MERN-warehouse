@@ -110,21 +110,18 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             {isEditActive && editValues && (
                 <form onSubmit={handleEdit} className='space-y-4'>
                     <div className='relative mt-2'>
-                        <div className='flex justify-between '>
-                            <label 
-                                htmlFor='UploadFile' 
-                                className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
-                            >
-                                Upload File:
-                            </label>
-                            <input
-                                type='file'
-                                id='UploadFile'
-                                onChange={(e) => setFile(e.target.files[0])}
-                                className='file-input peer text-sm w-full pt-4 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'             
-                            />
-                        </div>
-
+                        <label 
+                            htmlFor='UploadFile' 
+                            className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
+                        >
+                            Upload File:
+                        </label>
+                        <input
+                            type='file'
+                            id='UploadFile'
+                            onChange={(e) => setFile(e.target.files[0])}
+                            className='file-input peer text-sm w-full pt-4 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'             
+                        />
                         <div className='mt-1 text-sm text-gray-600'>
                             {existingFileName(editValues.file)}
                         </div>
