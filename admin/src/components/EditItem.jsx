@@ -70,11 +70,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             return filePath.split('/').pop()
         }
     }
-    /*
-    const part = filePath.split('/')
-    // ['', 'uploads', 'image.jpg']
-    const element = parts.pop()
-    */
 
     return (
         <>
