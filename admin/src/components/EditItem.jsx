@@ -45,17 +45,28 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                 body: formData
             })
 
+            // PARSE THE RESPONSE BODY AS JSON AND STORE THE EDITED ITEM DATA IN THE `updatedItem` VARIABLE
+            const updatedItem = await response.json()
+
             if (!response.ok) {
                 throw new Error('error while editing warehouse item!')
             }
 
-            const updatedItem = await response.json()
-            
+            console.log('Item has been suceesfully updated:', updatedItem)
+            /*
             // UPDATE STATE WAREHOUSE
             const updatedWarehouse = warehouse.map((item) =>
                 item.id === updatedItem._id ? updatedItem : item
+            )*/
+
+            // ALLOWS TO DISPLAY EDITED ITEMS WITHOUT REFRESHING THE BROWSER
+            setWarehouse((prevWarehouse) => 
+                prevWarehouse.map((item) => 
+                    item._id === updatedItem._id ? updatedItem : item
+                )
             )
-            setWarehouse(updatedWarehouse)
+
+            // setWarehouse(updatedWarehouse)
             setEditValues()
             setItemName('')
         } catch(error) {
