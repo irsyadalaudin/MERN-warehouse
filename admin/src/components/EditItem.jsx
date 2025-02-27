@@ -91,9 +91,10 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                     <button
                         type='button'
                         onClick={() => setActiveForm()}
-                        className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                        className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-red-800 hover:to-red-600 transition-all'
                     >
-                        ⬅ Go Back
+                        {/* ⬅ Go Back */}
+                        Cancel
                     </button>
                     <button
                         type='submit'

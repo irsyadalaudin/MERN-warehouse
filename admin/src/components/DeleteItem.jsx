@@ -55,9 +55,10 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                     <button
                         type='button'
                         onClick={() => setActiveForm()}
-                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
+                        className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-red-800 hover:to-red-600 transition-all'
                     >
-                        ⬅ Go Back
+                        Cancel
+                        {/* ⬅ Go Back */}
                     </button>
                     <button
                         type='submit'
