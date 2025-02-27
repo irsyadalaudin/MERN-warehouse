@@ -15,6 +15,7 @@ const AddItem = ({ setActiveForm }) => {
         weight: '',
         quantity: ''
     })
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         
@@ -22,7 +23,7 @@ const AddItem = ({ setActiveForm }) => {
             itemName: '',
             weight: '',
             quantity: ''
-            })
+        })
 
         // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
         const { hasError, newErrors } = ValidateForm({ itemName, weight, quantity })
