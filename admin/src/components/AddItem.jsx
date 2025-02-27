@@ -51,7 +51,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                 body: formData
             })
 
-            // PARSE THE RESPONSE BODY AS JSON AND LOG THE SUCCESS MESSAGE WITH THE CREATED ITEM DATA
+            // PARSE THE RESPONSE BODY AS JSON AND STORE THE CREATED ITEM DATA IN THE `data` VARIABLE
             const data = await response.json()
 
             if (!response.ok) {
