@@ -27,7 +27,7 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         setWarehouse(updatedWarehouse)
         setItemName('')
         setActiveForm()
-        setError('')
+        setError()
     } catch (error) {
         setError(error.message)
     }
