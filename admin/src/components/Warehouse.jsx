@@ -87,77 +87,88 @@ const Warehouse = () => {
                 <div ref={dropdownRef} className='relative'>
                     <div className='flex item-center justify-between'>
                         <h2 className='text-3xl font-bold text-gray-900'>Warehouse Item</h2>
-                        <button
-                            type='button'
-                            onClick={toggleDropdown}
-                            className={`mb-0.5 w-40 text-xl text-white font-bold rounded-t-lg shadow-lg transition-all ${
-                                dropdownVisible
+                        <div className='flex gap-3'>
+                            <h3 className='align-middle text-md'>Sort By:</h3>
+                            <button
+                                type='button'
+                                onClick={toggleDropdown}
+                                className={`mb-0.5 w-40 text-md text-white font-bold rounded-t-lg shadow-lg transition-all ${
+                                    dropdownVisible
                                     ? 'opacity-35 bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                     : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
-                            }`}
-                            >
-                                Sort by
-                        </button>
+                                }`}
+                                >
+                                    {sortOption}
+                            </button>
+                        </div>
                     </div>
 
                     {dropdownVisible && (
                         <div className='gap-y-0.5 rounded-b-lg flex flex-col justify-self-end shadow-xl'>
-                            <button
-                                type='button'
-                                onClick={() => {
-                                    setSortOption('itemNameA-Z')
-                                    setDropdownVisible(false)
-                                }}
-                                className={`w-40 px-5 text-md text-white font-bold transition-all ${
-                                    sortOption === 'itemNameA-Z'
-                                        ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
-                                        : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
-                                }`}
-                                >
-                                    Item Name A-Z
-                            </button>
-                            <button 
-                                type='button'
-                                onClick={() => {
-                                    setSortOption('itemNameZ-A')
-                                    setDropdownVisible(false)
-                                }}
-                                className={`w-40 px-5 text-md text-white font-bold transition-all ${
-                                    sortOption === 'itemNameZ-A'
-                                        ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
-                                        : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
-                                }`}
-                                >
-                                    Item Name Z-A
-                            </button>
-                            <button 
-                                type='button'
-                                onClick={() => {
-                                    setSortOption('quantityAsc')
-                                    setDropdownVisible(false)
-                                }}
-                                className={`w-40 px-5 text-md text-white font-bold transition-all ${
-                                    sortOption === 'quantityAsc'
-                                        ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
-                                        : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
-                                }`}
-                                >
-                                    Qty Ascending
-                            </button>
-                            <button 
-                                type='button'
-                                onClick={() => {
-                                    setSortOption('quantityDesc')
-                                    setDropdownVisible(false)
-                                }}
-                                className={`w-40 px-5 text-md text-white font-bold rounded-b-lg transition-all ${
-                                    sortOption === 'quantityDesc'
-                                        ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
-                                        : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
-                                }`}
-                                >
-                                    Qty Descending
-                            </button>
+                            {sortOption !== 'itemNameA-Z' && (
+                                <button
+                                    type='button'
+                                    onClick={() => {
+                                        setSortOption('itemNameA-Z')
+                                        setDropdownVisible(false)
+                                    }}
+                                    className={`w-40 px-5 text-md text-white font-bold transition-all ${
+                                        sortOption === 'itemNameA-Z'
+                                            ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
+                                            : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                                    }`}
+                                    >
+                                        Item Name A-Z
+                                </button>
+                            )}
+                            {sortOption !== 'itemNameZ-A' && (
+                                <button 
+                                    type='button'
+                                    onClick={() => {
+                                        setSortOption('itemNameZ-A')
+                                        setDropdownVisible(false)
+                                    }}
+                                    className={`w-40 px-5 text-md text-white font-bold transition-all ${
+                                        sortOption === 'itemNameZ-A'
+                                            ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
+                                            : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                                    }`}
+                                    >
+                                        Item Name Z-A
+                                </button>
+                            )}
+                            {sortOption !== 'quantityAsc' && (
+                                <button 
+                                    type='button'
+                                    onClick={() => {
+                                        setSortOption('quantityAsc')
+                                        setDropdownVisible(false)
+                                    }}
+                                    className={`w-40 px-5 text-md text-white font-bold transition-all ${
+                                        sortOption === 'quantityAsc'
+                                            ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
+                                            : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                                    }`}
+                                    >
+                                        Qty Ascending
+                                </button>
+                            )}
+                            {sortOption !== 'quantityDesc' && (
+                                <button 
+                                    type='button'
+                                    onClick={() => {
+                                        setSortOption('quantityDesc')
+                                        setDropdownVisible(false)
+                                    }}
+                                    className={`w-40 px-5 text-md text-white font-bold rounded-b-lg transition-all ${
+                                        sortOption === 'quantityDesc'
+                                            ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
+                                            : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
+                                    }`}
+                                    >
+                                        Qty Descending
+                                </button>
+                            )}
                         </div>
                     )}
                 </div>
