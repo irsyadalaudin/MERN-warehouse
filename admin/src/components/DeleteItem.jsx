@@ -27,7 +27,7 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             setWarehouse(updatedWarehouse)
             setItemName('')
             setError()
-            setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLYDELETING ITEM
+            setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLY DELETING ITEM
         } catch (error) {
             setError(error.message)
         }
