@@ -26,8 +26,8 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             const updatedWarehouse = warehouse.filter((item) => item._id !== foundItem._id)
             setWarehouse(updatedWarehouse)
             setItemName('')
-            setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLYDELETING ITEM
             setError()
+            setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLYDELETING ITEM
         } catch (error) {
             setError(error.message)
         }
