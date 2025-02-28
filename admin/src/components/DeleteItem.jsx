@@ -4,39 +4,41 @@ import PropTypes from 'prop-types'
 const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [itemName, setItemName] = useState('')
     const [error, setError] = useState()
+    // const [isDeleteActive, setIsDeleteActive] = useState(true)
 
     const handleDelete = async (e) => {
-        e.preventDefault()
-        const foundItem = warehouse.find((item) => item.itemName === itemName)
+    e.preventDefault()
+    const foundItem = warehouse.find((item) => item.itemName === itemName)
 
-        // IF THE ITEM IS NOT FOUND IN THE WAREHOUSE, SET AN ERROR MESSAGE
-        // AND STOP FURTHER EXECUTION TO PREVENT UNNECESSARY API CALLS
-        if (!foundItem) {
-            setError('item not found!')
-            return
-        }
-
-        try {
-            // USE AN ID IN THE URL
-            const response = await fetch(`/api/warehouse/${foundItem._id}`, {
-                method: 'DELETE'
-            })
-
-            if (!response.ok) {
-                throw new Error('error while deleting warehouse item!')
-            }
-
-            // REMOVE ITEM FROM THE DB, AFTER SUCCESSFULLY MATCHING THE ITEM NAME TO BE DELETED
-            const updatedWarehouse = warehouse.filter((item) => item._id !== foundItem._id)
-            setWarehouse(updatedWarehouse)
-            setItemName('')
-        } catch (error) {
-            setError(error.message)
-        }
+    if (!foundItem) {
+        setError('item not found!')
+        return
     }
+
+    try {
+        const response = await fetch(`/api/warehouse/${foundItem._id}`, {
+            method: 'DELETE'
+        })
+
+        if (!response.ok) {
+            throw new Error('error while deleting warehouse item!')
+        }
+
+        const updatedWarehouse = warehouse.filter((item) => item._id !== foundItem._id)
+        setWarehouse(updatedWarehouse)
+        setItemName('')
+        // setIsDeleteActive(false)
+        setActiveForm()
+        setError('')
+    } catch (error) {
+        setError(error.message)
+    }
+}
+
 
     return (
         <>
+            {/* {isDeleteActive && !error ? ( */}
             {!error ? (
                 <form onSubmit={handleDelete} className='space-y-4'>
                     <div className='mt-2'>
