@@ -6,32 +6,32 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [error, setError] = useState()
 
     const handleDelete = async (e) => {
-    e.preventDefault()
-    const foundItem = warehouse.find((item) => item.itemName === itemName)
+        e.preventDefault()
+        const foundItem = warehouse.find((item) => item.itemName === itemName)
 
-    if (!foundItem) {
-        setError('item not found!')
-        return
-    }
-
-    try {
-        const response = await fetch(`/api/warehouse/${foundItem._id}`, {
-            method: 'DELETE'
-        })
-
-        if (!response.ok) {
-            throw new Error('error while deleting warehouse item!')
+        if (!foundItem) {
+            setError('item not found!')
+            return
         }
 
-        const updatedWarehouse = warehouse.filter((item) => item._id !== foundItem._id)
-        setWarehouse(updatedWarehouse)
-        setItemName('')
-        setActiveForm()
-        setError()
-    } catch (error) {
-        setError(error.message)
+        try {
+            const response = await fetch(`/api/warehouse/${foundItem._id}`, {
+                method: 'DELETE'
+            })
+
+            if (!response.ok) {
+                throw new Error('error while deleting warehouse item!')
+            }
+
+            const updatedWarehouse = warehouse.filter((item) => item._id !== foundItem._id)
+            setWarehouse(updatedWarehouse)
+            setItemName('')
+            setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLYDELETING ITEM
+            setError()
+        } catch (error) {
+            setError(error.message)
+        }
     }
-}
 
 
     return (
