@@ -71,7 +71,6 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
             setFile()
             setError()
             setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLY CREATING ITEM
-
         } catch (error) {
             setError(error.message)
         }
