@@ -24,7 +24,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         setItemName('')
         setError()
         setIsEditActive(true)
-        // setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLY UPDATING ITEM
     }
 
     const handleEdit = async (e) => {
