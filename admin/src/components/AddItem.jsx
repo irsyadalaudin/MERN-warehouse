@@ -74,7 +74,6 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
         } catch (error) {
             setError(error.message)
         }
-
     }
 
     return (
