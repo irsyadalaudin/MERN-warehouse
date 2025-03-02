@@ -53,11 +53,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             }
 
             console.log('Item has been suceesfully updated:', updatedItem)
-            /*
-            // UPDATE STATE WAREHOUSE
-            const updatedWarehouse = warehouse.map((item) =>
-                item.id === updatedItem._id ? updatedItem : item
-            )*/
 
             // ALLOWS TO DISPLAY EDITED ITEMS WITHOUT REFRESHING THE BROWSER
             setWarehouse((prevWarehouse) => 
@@ -66,7 +61,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                 )
             )
 
-            // setWarehouse(updatedWarehouse)
             setEditValues()
             setItemName('')
         } catch(error) {
@@ -104,7 +98,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         onClick={() => setActiveForm()}
                         className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-red-800 hover:to-red-600 transition-all'
                     >
-                        {/* ⬅ Go Back */}
                         Cancel
                     </button>
                     <button
