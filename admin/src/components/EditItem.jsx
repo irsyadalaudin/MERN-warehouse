@@ -11,7 +11,9 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
 
     const handleFind = (e) => {
         e.preventDefault()
-        const foundItem = warehouse.find((item) => item.itemName === itemName)
+
+        const lowerCaseItemName = itemName.toLocaleLowerCase()
+        const foundItem = warehouse.find((item) => item.itemName.toLowerCase() === lowerCaseItemName)
 
         // HANDLE ERROR WHEN ITEM IS NOT FOUND
         if (!foundItem) {
