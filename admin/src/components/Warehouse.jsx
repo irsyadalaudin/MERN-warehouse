@@ -3,6 +3,8 @@ import AddItem from './AddItem'
 import DeleteItem from './DeleteItem'
 import EditItem from './EditItem'
 import sortItems from '../utils/SortItems'
+// import { format, formatDistanceToNow } from 'date-fns/formatRFC7231'
+import { format, formatDistanceToNow } from 'date-fns'
 
 const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
@@ -44,6 +46,11 @@ const Warehouse = () => {
         }
         fetchWarehouseItem()
     }, [])
+    /*
+    const pattern = 'EEEE, dd MMM yyyy'
+    const now = new Date()
+    const formattedDate = format(pattern, now)
+    */
 
     return (
         <div onClick={handleClickOutside} className='flex flex-col lg:flex-row gap-8 p-8 min-h-screen'>
@@ -84,6 +91,7 @@ const Warehouse = () => {
 
             {/* MAIN */}
             <div className='flex-1 lg:w-3/4'>
+                {/* DROPDOWN BUTON */}
                 <div ref={dropdownRef} className='relative'>
                     <div className='flex item-center justify-between'>
                         <h2 className='text-3xl font-bold text-gray-900'>Warehouse Item</h2>
@@ -103,6 +111,7 @@ const Warehouse = () => {
                         </div>
                     </div>
 
+                    {/* DROPDOWN */}
                     {dropdownVisible && (
                         <div className='gap-y-0.5 rounded-b-lg flex flex-col justify-self-end shadow-xl'>
                             {sortOption !== 'itemNameA-Z' && (
@@ -173,6 +182,7 @@ const Warehouse = () => {
                     )}
                 </div>
 
+                {/* WAREHOUSE ITEM */}
                 {!error ? (
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
                         {/* {warehouse.map((item) => ( */}
@@ -190,6 +200,9 @@ const Warehouse = () => {
                                 <p className='text-gray-700 mb-1'>{item.weight}kg</p>
                                 <p className='text-gray-700 mb-1'>{item.weightDetails}</p>
                                 <p className='text-gray-700 font-medium'>Quantity: {item.quantity}</p>
+                                {/* <p>{formattedDate}</p> */}
+                                <p>{format(new Date(item.createdAt), 'EEEE, dd MM yyyy')}</p>
+                                <p>{formatDistanceToNow(new Date(item.createdAt), { addSuflix: true })}</p>
                             </div>
                         ))}
                     </div>
