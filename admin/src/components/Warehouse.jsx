@@ -3,8 +3,7 @@ import AddItem from './AddItem'
 import DeleteItem from './DeleteItem'
 import EditItem from './EditItem'
 import sortItems from '../utils/SortItems'
-// import { format, formatDistanceToNow } from 'date-fns/formatRFC7231'
-import { format, formatDistanceToNow } from 'date-fns'
+import { format } from 'date-fns'
 
 const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
@@ -46,11 +45,6 @@ const Warehouse = () => {
         }
         fetchWarehouseItem()
     }, [])
-    /*
-    const pattern = 'EEEE, dd MMM yyyy'
-    const now = new Date()
-    const formattedDate = format(pattern, now)
-    */
 
     return (
         <div onClick={handleClickOutside} className='flex flex-col lg:flex-row gap-8 p-8 min-h-screen'>
@@ -200,9 +194,7 @@ const Warehouse = () => {
                                 <p className='text-gray-700 mb-1'>{item.weight}kg</p>
                                 <p className='text-gray-700 mb-1'>{item.weightDetails}</p>
                                 <p className='text-gray-700 font-medium'>Quantity: {item.quantity}</p>
-                                {/* <p>{formattedDate}</p> */}
                                 <p>{format(new Date(item.createdAt), 'EEEE, dd MM yyyy')}</p>
-                                <p>{formatDistanceToNow(new Date(item.createdAt), { addSuflix: true })}</p>
                             </div>
                         ))}
                     </div>
