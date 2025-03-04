@@ -8,9 +8,16 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [editValues, setEditValues] = useState()
     const [file, setFile] = useState({})
     const [isEditActive, setIsEditActive] = useState(false)
+    const [formErrors, setFormErrors] = useState({})
 
     const handleFind = (e) => {
         e.preventDefault()
+
+        // VALIDATION IF itemName IS EMPTY
+        if (!itemName.trim()) {
+            setFormErrors({ itemName: 'this field is required' })
+            return
+        }
 
         const lowerCaseItemName = itemName.toLocaleLowerCase()
         const foundItem = warehouse.find((item) => item.itemName.toLowerCase() === lowerCaseItemName)
@@ -26,11 +33,26 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         setItemName('')
         setError()
         setIsEditActive(true)
+        setFormErrors({})
     }
-
+    /* */
     const handleEdit = async (e) => {
         e.preventDefault()
 
+        const errors = {}
+        if (!editValues.itemName.trim()) errors.itemName = 'this field is required'
+        if (!editValues.weight || editValues.weight.toString().trim() === '') errors.weight = 'this field is required'
+        if (!editValues.quantity || editValues.quantity.toString().trim === '') errors.quantity = 'this field is required'
+
+        // CHECK IF THERE ARE (errors), SET THEM WITH `setFormErrors(errors)` AND STOP THE PROCESS WITH return
+        if (Object.keys(errors).length > 0) {
+            setFormErrors(errors)
+            return
+        }
+        console.log(Object.keys(errors))               // ['itemName']
+        console.log(Object.keys(errors).length > 0)    // true
+
+        // CONTINUE EDITING IF THERE ARE NO (errors)
         const formData = new FormData()
         formData.append('itemName', editValues.itemName)
         formData.append('weight', editValues.weight)
@@ -66,6 +88,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             setEditValues()
             setItemName('')
             setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLY UPDATING ITEM
+            setFormErrors({})
         } catch(error) {
             setError(error.message)
         }
@@ -147,6 +170,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             onChange={(e) => setEditValues({ ...editValues, itemName: e.target.value })}
                             className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
+                        {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
                     <div className='relative'>
                         <label 
@@ -160,6 +184,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             onChange={(e) => setEditValues({ ...editValues, weight: e.target.value })}
                             className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
+                        {formErrors.weight && <p className='text-red-500'>{formErrors.weight}</p>}
                     </div>
                     <div className='relative'>
                         <label 
@@ -187,6 +212,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             onChange={(e) => setEditValues({ ...editValues, quantity: e.target.value })}
                             className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
+                        {formErrors.quantity && <p className='text-red-500'>{formErrors.quantity}</p>}
                     </div>
                     <button
                         type='button'
