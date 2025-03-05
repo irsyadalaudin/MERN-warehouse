@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import '../index.css'
+import ValidateForm from '../utils/ValidateForm'
 
 const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
-    const [itemName, setItemName] = useState('')
-    const [error, setError] = useState()
-    const [editValues, setEditValues] = useState()
     const [file, setFile] = useState({})
+    const [itemName, setItemName] = useState('')
+    const [formValues, setFormValues] = useState()
     const [isEditActive, setIsEditActive] = useState(false)
+    const [error, setError] = useState()
     const [formErrors, setFormErrors] = useState({})
 
     const handleFind = (e) => {
@@ -28,8 +29,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             return
         }
 
-        // IF ITEM IS FOUND, SAVE THE DATA TO editValues AND DISPLAY THE EDIT FORM
-        setEditValues(foundItem)
+        // IF ITEM IS FOUND, SAVE THE DATA TO formValues AND DISPLAY THE EDIT FORM
+        setFormValues(foundItem)
         setItemName('')
         setError()
         setIsEditActive(true)
@@ -38,12 +39,15 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     /* */
     const handleEdit = async (e) => {
         e.preventDefault()
-
+        /*
         const errors = {}
         if (!editValues.itemName.trim()) errors.itemName = 'this field is required'
         if (!editValues.weight || editValues.weight.toString().trim() === '') errors.weight = 'this field is required'
         if (!editValues.quantity || editValues.quantity.toString().trim === '') errors.quantity = 'this field is required'
+        */
 
+        // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
+        const errors = ValidateForm({formValues})
         // CHECK IF THERE ARE (errors), SET THEM WITH `setFormErrors(errors)` AND STOP THE PROCESS WITH return
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors)
@@ -54,17 +58,17 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
 
         // CONTINUE EDITING IF THERE ARE NO (errors)
         const formData = new FormData()
-        formData.append('itemName', editValues.itemName)
-        formData.append('weight', editValues.weight)
-        formData.append('weightDetails', editValues.weightDetails)
-        formData.append('quantity', editValues.quantity)
+        formData.append('itemName', formValues.itemName)
+        formData.append('weight', formValues.weight)
+        formData.append('weightDetails', formValues.weightDetails)
+        formData.append('quantity', formValues.quantity)
 
         if (file) {
             formData.append('file', file)
         }
 
         try {
-            const response = await fetch(`/api/warehouse/${editValues._id}`, {
+            const response = await fetch(`/api/warehouse/${formValues._id}`, {
                 method: 'PATCH',
                 body: formData
             })
@@ -85,7 +89,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                 )
             )
 
-            setEditValues()
+            setFormValues()
             setItemName('')
             setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLY UPDATING ITEM
             setFormErrors({})
@@ -138,7 +142,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                 <div>{error}</div>
             )}
 
-            {isEditActive && editValues && (
+            {isEditActive && formValues && (
                 <form onSubmit={handleEdit} className='space-y-4'>
                     <div className='relative mt-2'>
                         <label 
@@ -154,7 +158,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             className='file-input peer text-sm w-full pt-4 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'             
                         />
                         <div className='mt-1 text-sm text-gray-600'>
-                            {existingFileName(editValues.file)}
+                            {existingFileName(formValues.file)}
                         </div>
                     </div>
 
@@ -167,8 +171,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         </label>
                         <input
                             type='text'
-                            value={editValues.itemName}
-                            onChange={(e) => setEditValues({ ...editValues, itemName: e.target.value })}
+                            value={formValues.itemName}
+                            onChange={(e) => setFormValues({ ...formValues, itemName: e.target.value })}
                             className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
@@ -181,8 +185,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             Weights in (Kgs):
                         </label>
                         <input
-                            value={editValues.weight}
-                            onChange={(e) => setEditValues({ ...editValues, weight: e.target.value })}
+                            value={formValues.weight}
+                            onChange={(e) => setFormValues({ ...formValues, weight: e.target.value })}
                             className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                         {formErrors.weight && <p className='text-red-500'>{formErrors.weight}</p>}
@@ -195,8 +199,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             Weight Details:
                         </label>
                         <input 
-                            value={editValues.weightDetails}
-                            onChange={(e) => setEditValues({ ...editValues, weightDetails: e.target.value })}
+                            value={formValues.weightDetails}
+                            onChange={(e) => setFormValues({ ...formValues, weightDetails: e.target.value })}
                             className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </div>
@@ -209,8 +213,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         </label>
                         <input
                             type='number'
-                            value={editValues.quantity}
-                            onChange={(e) => setEditValues({ ...editValues, quantity: e.target.value })}
+                            value={formValues.quantity}
+                            onChange={(e) => setFormValues({ ...formValues, quantity: e.target.value })}
                             className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                         {formErrors.quantity && <p className='text-red-500'>{formErrors.quantity}</p>}
