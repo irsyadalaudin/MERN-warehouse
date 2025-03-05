@@ -10,29 +10,10 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
     const [weight, setWeight] = useState('')
     const [weightDetails, setWeightDetails] = useState('')
     const [error, setError] = useState()
-    // const [formErrors, setFormErrors] = useState({
-    //     itemName: '',
-    //     weight: '',
-    //     quantity: ''
-    // })
     const [formErrors, setFormErrors] = useState({})
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        /*
-        setFormErrors({
-            itemName: '',
-            weight: '',
-            quantity: ''
-        })
-
-        const { hasError, newErrors } = ValidateForm({ itemName, weight, quantity })
-
-        if (hasError) {
-            setFormErrors(newErrors)
-            return
-        }
-        */
 
        // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
         const formValues = {
