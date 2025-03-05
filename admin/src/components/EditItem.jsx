@@ -32,8 +32,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         // IF ITEM IS FOUND, SAVE THE DATA TO formValues AND DISPLAY THE EDIT FORM
         setFormValues(foundItem)
         setItemName('')
-        setError()
         setIsEditActive(true)
+        setError()
         setFormErrors({})
     }
     /* */
@@ -92,6 +92,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             setFormValues()
             setItemName('')
             setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLY UPDATING ITEM
+            setError()
             setFormErrors({})
         } catch(error) {
             setError(error.message)
@@ -120,7 +121,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            // className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className={`pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none' }`}
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
@@ -155,7 +157,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='file'
                             id='UploadFile'
                             onChange={(e) => setFile(e.target.files[0])}
-                            className='file-input peer text-sm w-full pt-4 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'             
+                            className='file-input peer text-sm w-full pt-4 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'          
                         />
                         <div className='mt-1 text-sm text-gray-600'>
                             {existingFileName(formValues.file)}
@@ -173,7 +175,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='text'
                             value={formValues.itemName}
                             onChange={(e) => setFormValues({ ...formValues, itemName: e.target.value })}
-                            className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            // className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className={`peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
@@ -187,7 +190,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         <input
                             value={formValues.weight}
                             onChange={(e) => setFormValues({ ...formValues, weight: e.target.value })}
-                            className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            // className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className={`peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.weight ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.weight && <p className='text-red-500'>{formErrors.weight}</p>}
                     </div>
@@ -215,7 +219,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='number'
                             value={formValues.quantity}
                             onChange={(e) => setFormValues({ ...formValues, quantity: e.target.value })}
-                            className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            // className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className={`peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.quantity ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.quantity && <p className='text-red-500'>{formErrors.quantity}</p>}
                     </div>
