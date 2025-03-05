@@ -118,6 +118,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             onChange={(e) => setItemName(e.target.value)}
                             className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
+                        {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
                     <button
                         type='button'
