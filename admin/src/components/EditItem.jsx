@@ -226,7 +226,10 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                     </div>
                     <button
                         type='button'
-                        onClick={() => setIsEditActive(false)}
+                        onClick={() => {
+                            setIsEditActive(false)
+                            setFormErrors({})
+                        }}
                         className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
                     >
                         ⬅ Go Back
