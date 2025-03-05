@@ -36,18 +36,13 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         setError()
         setFormErrors({})
     }
-    /* */
+
     const handleEdit = async (e) => {
         e.preventDefault()
-        /*
-        const errors = {}
-        if (!editValues.itemName.trim()) errors.itemName = 'this field is required'
-        if (!editValues.weight || editValues.weight.toString().trim() === '') errors.weight = 'this field is required'
-        if (!editValues.quantity || editValues.quantity.toString().trim === '') errors.quantity = 'this field is required'
-        */
 
         // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
         const errors = ValidateForm({formValues})
+
         // CHECK IF THERE ARE (errors), SET THEM WITH `setFormErrors(errors)` AND STOP THE PROCESS WITH return
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors)
@@ -99,6 +94,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         }
     }
 
+    // DISPLAYS THE PREVIOUSLY UPLOADED FILE NAME IF AVAILABLE; OTHERWISE, SHOWS 'no file uploaded'
     const existingFileName = (filePath) => {
         if (!filePath) {
             return 'no file uploaded'
@@ -121,7 +117,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            // className='pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                             className={`pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none' }`}
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
@@ -175,7 +170,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='text'
                             value={formValues.itemName}
                             onChange={(e) => setFormValues({ ...formValues, itemName: e.target.value })}
-                            // className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                             className={`peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
@@ -190,7 +184,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         <input
                             value={formValues.weight}
                             onChange={(e) => setFormValues({ ...formValues, weight: e.target.value })}
-                            // className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                             className={`peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.weight ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.weight && <p className='text-red-500'>{formErrors.weight}</p>}
@@ -219,7 +212,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='number'
                             value={formValues.quantity}
                             onChange={(e) => setFormValues({ ...formValues, quantity: e.target.value })}
-                            // className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                             className={`peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.quantity ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.quantity && <p className='text-red-500'>{formErrors.quantity}</p>}
