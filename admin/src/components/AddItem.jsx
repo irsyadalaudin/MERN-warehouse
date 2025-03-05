@@ -4,32 +4,46 @@ import ValidateForm from '../utils/ValidateForm'
 import '../index.css'
 
 const AddItem = ({ setActiveForm, setWarehouse }) => {
+    const [file, setFile] = useState()
     const [itemName, setItemName] = useState('')
     const [quantity, setQuantity] = useState('')
     const [weight, setWeight] = useState('')
     const [weightDetails, setWeightDetails] = useState('')
     const [error, setError] = useState()
-    const [file, setFile] = useState()
-    const [formErrors, setFormErrors] = useState({
-        itemName: '',
-        weight: '',
-        quantity: ''
-    })
+    // const [formErrors, setFormErrors] = useState({
+    //     itemName: '',
+    //     weight: '',
+    //     quantity: ''
+    // })
+    const [formErrors, setFormErrors] = useState({})
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        
+        /*
         setFormErrors({
             itemName: '',
             weight: '',
             quantity: ''
         })
 
-        // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
         const { hasError, newErrors } = ValidateForm({ itemName, weight, quantity })
 
         if (hasError) {
             setFormErrors(newErrors)
+            return
+        }
+        */
+
+       // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
+        const formValues = {
+            itemName,
+            weight,
+            quantity
+        }
+        
+        const errors = ValidateForm({formValues})
+        if (Object.keys(errors).length > 0) {
+            setFormErrors(errors)
             return
         }
 
