@@ -4,10 +4,10 @@ import '../index.css'
 
 const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [itemName, setItemName] = useState('')
-    const [error, setError] = useState()
     const [editValues, setEditValues] = useState()
     const [file, setFile] = useState({})
     const [isEditActive, setIsEditActive] = useState(false)
+    const [error, setError] = useState()
     const [formErrors, setFormErrors] = useState({})
 
     const handleFind = (e) => {
@@ -15,10 +15,15 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
 
         // VALIDATION IF itemName IS EMPTY
         if (!itemName.trim()) {
-            setFormErrors({ itemName: 'this field is required' })
+            // setFormErrors({ itemName: 'this field is required' })
+            setFormErrors((prevErrors) => ({
+                ...prevErrors,
+                itemName: 'this field is required'
+            }))
             return
         }
 
+        // CONVERT itemName TO lowercase AND FIND THE MATCHING ITEM IN WAREHOSUE
         const lowerCaseItemName = itemName.toLocaleLowerCase()
         const foundItem = warehouse.find((item) => item.itemName.toLowerCase() === lowerCaseItemName)
 
@@ -31,8 +36,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         // IF ITEM IS FOUND, SAVE THE DATA TO editValues AND DISPLAY THE EDIT FORM
         setEditValues(foundItem)
         setItemName('')
-        setError()
         setIsEditActive(true)
+        setError()
         setFormErrors({})
     }
     /* */
