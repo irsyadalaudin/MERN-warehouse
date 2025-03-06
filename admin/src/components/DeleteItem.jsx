@@ -1,12 +1,24 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import ValidateForm from '../utils/ValidateForm'
 
 const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
     const [itemName, setItemName] = useState('')
     const [error, setError] = useState()
+    const [formErrors, setFormErrors] = useState({})
 
     const handleDelete = async (e) => {
         e.preventDefault()
+
+        // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
+        const formValues = { itemName }
+
+        const errors = ValidateForm({ formValues })
+        if (Object.keys(errors).length > 0) {
+            setFormErrors(errors)
+            return
+        }
+
         const foundItem = warehouse.find((item) => item.itemName === itemName)
 
         if (!foundItem) {
@@ -33,7 +45,6 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         }
     }
 
-
     return (
         <>
             {!error ? (
@@ -48,8 +59,10 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
-                            />
+                            // className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none'}`}
+                        />
+                        {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
                     <button
                         type='button'
