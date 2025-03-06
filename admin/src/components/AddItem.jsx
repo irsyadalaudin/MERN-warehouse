@@ -15,7 +15,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-       // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
+        // VALIDATES THE REQUIRED FORM FIELDS, AND IF THERE ARE ERRORS, DISPLAYS ERROR MESSAGES AND STOPS THE SUBMIT PROCESS
         const formValues = {
             itemName,
             weight,
@@ -101,7 +101,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             onChange={(e) => setItemName(e.target.value)}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none'}`}
                         />
-                        {formErrors.itemName && <div className='text-red-500'>{formErrors.itemName}</div>}
+                        {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
                     <div>
                         <label htmlFor='weightsInKgs' className='sr-only'>
@@ -115,7 +115,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             onChange={(e) => setWeight(e.target.value)}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.weight ? 'border border-red-500' : 'border-none'}`}
                         />
-                        {formErrors.weight && <div className='text-red-500'>{formErrors.weight}</div>}
+                        {formErrors.weight && <p className='text-red-500'>{formErrors.weight}</p>}
                     </div>
                     <div>
                         <label htmlFor='WeightDetails' className='sr-only'>
@@ -142,7 +142,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             onChange={(e) => setQuantity(e.target.value)}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.quantity ? 'border border-red-500' : 'border-none'} `}
                         />
-                        {formErrors.quantity && <div className='text-red-500'>{formErrors.quantity}</div>}
+                        {formErrors.quantity && <p className='text-red-500'>{formErrors.quantity}</p>}
                     </div>
                     <button
                         type='button'
