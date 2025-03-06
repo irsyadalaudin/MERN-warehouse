@@ -184,6 +184,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         <input
                             value={formValues.weight}
                             onChange={(e) => setFormValues({ ...formValues, weight: e.target.value })}
+                            onWheel={(e) => e.target.blur()}
                             className={`peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.weight ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.weight && <p className='text-red-500'>{formErrors.weight}</p>}
@@ -198,6 +199,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                         <input 
                             value={formValues.weightDetails}
                             onChange={(e) => setFormValues({ ...formValues, weightDetails: e.target.value })}
+                            onWheel={(e) => e.target.blur()}
                             className='peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                         />
                     </div>
@@ -212,6 +214,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='number'
                             value={formValues.quantity}
                             onChange={(e) => setFormValues({ ...formValues, quantity: e.target.value })}
+                            onWheel={(e) => e.target.blur()}
                             className={`peer text-sm w-full pl-2 pt-7 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.quantity ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.quantity && <p className='text-red-500'>{formErrors.quantity}</p>}
