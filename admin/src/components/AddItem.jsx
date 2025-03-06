@@ -22,7 +22,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
             quantity
         }
         
-        const errors = ValidateForm({formValues})
+        const errors = ValidateForm({ formValues })
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors)
             return
@@ -113,6 +113,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             type='number'
                             value={weight}
                             onChange={(e) => setWeight(e.target.value)}
+                            onWheel={(e) => e.target.blur()}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.weight ? 'border border-red-500' : 'border-none'}`}
                         />
                         {formErrors.weight && <p className='text-red-500'>{formErrors.weight}</p>}
@@ -140,6 +141,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             type='number'
                             value={quantity}
                             onChange={(e) => setQuantity(e.target.value)}
+                            onWheel={(e) => e.target.blur()}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.quantity ? 'border border-red-500' : 'border-none'} `}
                         />
                         {formErrors.quantity && <p className='text-red-500'>{formErrors.quantity}</p>}
