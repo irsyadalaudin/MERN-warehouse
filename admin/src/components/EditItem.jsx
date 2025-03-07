@@ -4,7 +4,7 @@ import '../index.css'
 import ValidateForm from '../utils/ValidateForm'
 
 const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
-    const [file, setFile] = useState({})
+    const [file, setFile] = useState()
     const [itemName, setItemName] = useState('')
     const [formValues, setFormValues] = useState()
     const [isEditActive, setIsEditActive] = useState(false)
@@ -58,7 +58,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         formData.append('weightDetails', formValues.weightDetails)
         formData.append('quantity', formValues.quantity)
 
-        if (file) {
+        if (file instanceof File) {
             formData.append('file', file)
         }
 
@@ -103,6 +103,10 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
         }
     }
 
+    const removeImage = () => {
+        setFile()
+    }
+
     return (
         <>
             {!isEditActive && !error ? (
@@ -141,10 +145,11 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
 
             {isEditActive && formValues && (
                 <form onSubmit={handleEdit} className='space-y-4'>
-                    <div className='relative mt-2'>
+                    <div className='relative mt-4'>
                         <label 
                             htmlFor='UploadFile' 
-                            className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
+                            // className='absolute left-2 top-2 text-gray-500 text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 transition-all'
+                            className='px-4 py-2 text-sm w-full  rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-cyan-800 hover:to-cyan-600 transition-all'
                         >
                             Upload File:
                         </label>
@@ -152,10 +157,17 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='file'
                             id='UploadFile'
                             onChange={(e) => setFile(e.target.files[0])}
-                            className='file-input peer text-sm w-full pt-4 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'          
+                            // className='file-input peer text-sm w-full pt-4 pb-3 rounded-md shadow-lg hover:shadow-xl focus:outline-none'          
+                            className='hidden'
                         />
                         <div className='mt-1 text-sm text-gray-600'>
-                            {existingFileName(formValues.file)}
+                            {/* {existingFileName(formValues.file)} */}
+                            {file ? file.name : existingFileName(formValues.file)}
+                            {file && (
+                                <button type='button' onClick={removeImage}>
+                                    ❌
+                                </button>
+                            )}
                         </div>
                     </div>
 
