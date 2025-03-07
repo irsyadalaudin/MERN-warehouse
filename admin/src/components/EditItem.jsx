@@ -158,7 +158,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             onChange={(e) => setFile(e.target.files[0])}        
                             className='hidden'
                         />
-                        <div className='mt-1 text-sm text-gray-600'>
+                        <div className='mt-2 text-sm text-gray-600'>
                             {file ? file.name : existingFileName(formValues.file)}
                             {file && (
                                 <button type='button' onClick={removeImage}>
