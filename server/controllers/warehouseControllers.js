@@ -34,7 +34,6 @@ const createWarehouse = async (req, res) => {
     const {itemName, quantity, weight, weightDetails} = req.body
 
     // IF A FILE IS UPLOADED, SAVE ITS path; OTHERWISE, SET FILE TO null
-    // const file = req.file ? `/images/${req.file.filename}` : null
     const file = req.file ? req.file.path : null
 
     try {
