@@ -186,7 +186,8 @@ const Warehouse = () => {
                                 className='bg-white border border-gray-200 mt-6 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1'
                             >
                                 <img
-                                    src={`http://localhost:4000${item.file}`}
+                                    // src={`http://localhost:4000${item.file}`}
+                                    src={item.file}
                                     alt={item.itemName} 
                                     className='w-full h-48 object-cover mb-6 rounded-lg'
                                 />

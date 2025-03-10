@@ -1,5 +1,6 @@
 import multer from 'multer'
-import storage from '../config/multerConfig.js'
+// import storage from '../config/multerConfig.js'
+import { storage } from '../config/cloudinaryConfig.js'
 
 // SETUP MULTER FROM `config/multerConfig.js` AND FILE LIMIT SIZE
 const upload = multer({
