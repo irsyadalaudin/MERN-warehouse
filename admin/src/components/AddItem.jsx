@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ValidateForm from '../utils/ValidateForm'
 import '../index.css'
 
-const AddItem = ({ setActiveForm, setWarehouse }) => {
+const AddItem = ({ setActiveForm, setWarehouse, isLoading, setIsLoading }) => {
     const [file, setFile] = useState()
     const [itemName, setItemName] = useState('')
     const [quantity, setQuantity] = useState('')
@@ -28,6 +28,8 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
             setFormErrors(errors)
             return
         }
+
+        setIsLoading(true)
 
         // CREATE A NEW FormData OBJECT AND APPEND THE ITEM DETAILS (itemName, quantity, weight)
         const formData = new FormData()
@@ -70,6 +72,8 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
             setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLY CREATING ITEM
         } catch (error) {
             setError(error.message)
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -102,6 +106,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             id='UploadFile'
                             onChange={(e) => setFile(e.target.files[0])}        
                             className='hidden'
+                            disabled={isLoading}
                         />
                         <div className='mt-2 text-sm text-gray-600'>
                             {file ? file.name : existingFileName(formValues?.file)}
@@ -123,6 +128,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none'}`}
+                            disabled={isLoading}
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
@@ -138,6 +144,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             onChange={(e) => setWeight(e.target.value)}
                             onWheel={(e) => e.target.blur()}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.weight ? 'border border-red-500' : 'border-none'}`}
+                            disabled={isLoading}
                         />
                         {formErrors.weight && <p className='text-red-500'>{formErrors.weight}</p>}
                     </div>
@@ -152,6 +159,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             value={weightDetails}
                             onChange={(e) => setWeightDetails(e.target.value)}
                             className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
+                            disabled={isLoading}
                         />
                     </div>
                     <div>
@@ -165,7 +173,8 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                             value={quantity}
                             onChange={(e) => setQuantity(e.target.value)}
                             onWheel={(e) => e.target.blur()}
-                            className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.quantity ? 'border border-red-500' : 'border-none'} `}
+                            className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.quantity ? 'border border-red-500' : 'border-none'}`}
+                            disabled={isLoading}
                         />
                         {formErrors.quantity && <p className='text-red-500'>{formErrors.quantity}</p>}
                     </div>
@@ -173,6 +182,7 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                         type='button'
                         onClick={() => setActiveForm()}
                         className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-red-800 hover:to-red-600 transition-all'
+                        disabled={isLoading}
                     >
                         Cancel
                         {/* ⬅ Go Back */}
@@ -180,9 +190,18 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
                     <button
                         type='submit'
                         className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none hover:text-white bg-gradient-to-r hover:from-teal-800 hover:to-teal-600 transition-all'
+                        disabled={isLoading}
                     >
-                        Enter
+                        {/* Enter */}
+                        {isLoading ? 'Loading...' : 'Enter'}
                     </button>
+
+                    {/* LOADING INDICATOR
+                    {isLoading && (
+                        <div className='flex justify-center items-center'>
+                            <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900'></div>
+                        </div>
+                    )} */}
                 </form>
             ) : (
                 <div className='text-red-500'>Error: {error}</div>
@@ -194,7 +213,9 @@ const AddItem = ({ setActiveForm, setWarehouse }) => {
 /** PROP VALIDATION FOR setActiveForm */
 AddItem.propTypes = {
     setActiveForm: PropTypes.func.isRequired,
-    setWarehouse: PropTypes.func.isRequired
+    setWarehouse: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    setIsLoading: PropTypes.func.isRequired
 }
 
 export default AddItem

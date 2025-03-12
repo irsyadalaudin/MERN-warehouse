@@ -4,6 +4,7 @@ import DeleteItem from './DeleteItem'
 import EditItem from './EditItem'
 import sortItems from '../utils/SortItems'
 import { format } from 'date-fns'
+// import '../index.css'
 
 const Warehouse = () => {
     const [warehouse, setWarehouse] = useState([])
@@ -11,6 +12,7 @@ const Warehouse = () => {
     const [activeForm, setActiveForm] = useState()
     const [sortOption, setSortOption] = useState('itemNameA-Z')
     const [dropdownVisible, setDropdownVisible] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const dropdownRef = useRef()
 
@@ -28,6 +30,7 @@ const Warehouse = () => {
 
     useEffect(() => {
         const fetchWarehouseItem = async () => {
+            setIsLoading(true)
             try {
                 const response = await fetch('/api/warehouse')
 
@@ -41,6 +44,8 @@ const Warehouse = () => {
                 setWarehouse(sortedData)
             } catch (error) {
                 setError(error.message)
+            } finally {
+                setIsLoading(false)
             }
         }
         fetchWarehouseItem()
@@ -56,17 +61,17 @@ const Warehouse = () => {
                     <button
                         onClick={() => setActiveForm('add')}
                         className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed'
-                        disabled={activeForm === 'add'}
+                        disabled={activeForm === 'add' || isLoading}
                     >
                         Add Item
                     </button>
                     {/* FORM */}
-                    {activeForm === 'add' && <AddItem setActiveForm={setActiveForm} setWarehouse={setWarehouse} />}
+                    {activeForm === 'add' && <AddItem setActiveForm={setActiveForm} setWarehouse={setWarehouse} isLoading={isLoading} setIsLoading={setIsLoading} />}
 
                     <button
                         onClick={() => setActiveForm('delete')}
                         className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
-                        disabled={activeForm === 'delete'}
+                        disabled={activeForm === 'delete' || isLoading}
                     >
                         Delete Item
                     </button>
@@ -75,7 +80,7 @@ const Warehouse = () => {
                     <button
                         onClick={() => setActiveForm('edit')}
                         className='w-full py-3 px-6 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:text-gray-200 disabled:cursor-not-allowed mt-4'
-                        disabled={activeForm === 'edit'}
+                        disabled={activeForm === 'edit' || isLoading}
                     >
                         Edit Item
                     </button>
@@ -99,6 +104,7 @@ const Warehouse = () => {
                                     ? 'opacity-35 bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                     : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                 }`}
+                                disabled={isLoading}
                                 >
                                     {sortOption}
                             </button>
@@ -120,6 +126,7 @@ const Warehouse = () => {
                                             ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
                                             : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                     }`}
+                                    disabled={isLoading}
                                     >
                                         Item Name A-Z
                                 </button>
@@ -136,6 +143,7 @@ const Warehouse = () => {
                                             ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
                                             : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                     }`}
+                                    disabled={isLoading}
                                     >
                                         Item Name Z-A
                                 </button>
@@ -152,6 +160,7 @@ const Warehouse = () => {
                                             ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
                                             : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                     }`}
+                                    disabled={isLoading}
                                     >
                                         Qty Ascending
                                 </button>
@@ -168,6 +177,7 @@ const Warehouse = () => {
                                             ? 'bg-gradient-to-r from-cyan-800 to-cyan-600'
                                             : 'bg-gradient-to-r from-cyan-600 to-cyan-400 hover:from-cyan-800 hover:to-cyan-600'
                                     }`}
+                                    disabled={isLoading}
                                     >
                                         Qty Descending
                                 </button>
@@ -175,6 +185,15 @@ const Warehouse = () => {
                         </div>
                     )}
                 </div>
+
+                {/* LOADING INDICATOR */}
+                {isLoading && (
+                    // <div className='fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50'>
+                    <div className='fixed inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 z-50'>
+                        <div className=' block animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900'></div>
+                        <span className='mt-3 text-lg'>Loading...</span>
+                    </div>
+                )}
 
                 {/* WAREHOUSE ITEM */}
                 {!error ? (
@@ -199,7 +218,7 @@ const Warehouse = () => {
                         ))}
                     </div>
                 ) : (
-                    <div className='text-red-600 mt-6 font-medium'>Error: {error}</div>
+                    !isLoading && <div className='text-red-600 mt-6 font-medium'>Error: {error}</div>
                 )}
             </div>
         </div>
