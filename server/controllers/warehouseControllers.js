@@ -28,7 +28,6 @@ const getWarehouse = async (req, res) => {
     }
 }
 
-
 /** CREATE A NEW WAREHOUSE ITEM */
 const createWarehouse = async (req, res) => {
     const {itemName, quantity, weight, weightDetails} = req.body
@@ -69,7 +68,7 @@ const deleteWarehouse = async (req, res) => {
 const updateWarehouse = async (req, res) => {
     const { id } = req.params
 
-    if (!mongoose.Types.ObjectId.isValid(id)){
+    if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'no warehouse item matches the id!'})
     }
 

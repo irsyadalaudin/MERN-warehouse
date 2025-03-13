@@ -195,13 +195,6 @@ const AddItem = ({ setActiveForm, setWarehouse, isLoading, setIsLoading }) => {
                         {/* Enter */}
                         {isLoading ? 'Loading...' : 'Enter'}
                     </button>
-
-                    {/* LOADING INDICATOR
-                    {isLoading && (
-                        <div className='flex justify-center items-center'>
-                            <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900'></div>
-                        </div>
-                    )} */}
                 </form>
             ) : (
                 <div className='text-red-500'>Error: {error}</div>
