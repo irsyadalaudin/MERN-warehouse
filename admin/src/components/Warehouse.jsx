@@ -84,7 +84,7 @@ const Warehouse = () => {
                     >
                         Edit Item
                     </button>
-                    {activeForm === 'edit' && <EditItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
+                    {activeForm === 'edit' && <EditItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} isLoading={isLoading} setIsLoading={setIsLoading} />}
                 </div>
             </aside>
 
