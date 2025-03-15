@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import '../index.css'
 import ValidateForm from '../utils/ValidateForm'
@@ -36,6 +36,15 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
         setError()
         setFormErrors({})
     }
+
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => {
+                setError()
+            }, 7000)
+            return () => clearTimeout(timer)
+        }
+    }, [error])
 
     const handleEdit = async (e) => {
         e.preventDefault()
@@ -113,7 +122,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
 
     return (
         <>
-            {!isEditActive && !error ? (
+            {!isEditActive ? (
                 <form onSubmit={handleFind} className='space-y-4'>
                     <div className='mt-2'>
                         <label htmlFor='whichItemYouWantToEdit' className='sr-only'>
@@ -124,11 +133,14 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
                             placeholder='Which item you want to edit'
                             type='text'
                             value={itemName}
-                            onChange={(e) => setItemName(e.target.value)}
+                            onChange={(e) => { setItemName(e.target.value); setError() }}
                             className={`pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none' }`}
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
+
+                    {error && <div className='text-red-500'>{error}</div>}
+
                     <button
                         type='button'
                         onClick={() => setActiveForm()}
@@ -143,11 +155,12 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
                         Enter
                     </button>
                 </form>
-            ) : (
-                <div>{error}</div>
-            )}
+            // ) : (
+            //     <div>{error}</div>
+            // )}
+            // {isEditActive && formValues && (
 
-            {isEditActive && formValues && (
+            ) : isEditActive && formValues ? (
                 <form onSubmit={handleEdit} className='space-y-4'>
                     <div className='relative mt-4'>
                         <label 
@@ -255,6 +268,8 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
                         Enter
                     </button>
                 </form>
+            ) : (
+                <div className='text-red-500'>{error}</div>
             )}
         </>
     )
