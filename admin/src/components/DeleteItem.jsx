@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import ValidateForm from '../utils/ValidateForm'
 
-const DeleteItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoading }) => {
+const DeleteItem = ({ warehouse, setWarehouse, setActiveForm, setIsLoading }) => {
     const [itemName, setItemName] = useState('')
     const [error, setError] = useState()
     const [formErrors, setFormErrors] = useState({})
@@ -19,14 +19,14 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLo
             return
         }
 
-        setIsLoading(true)
-
         const foundItem = warehouse.find((item) => item.itemName === itemName)
-
+        
         if (!foundItem) {
             setError('item not found!')
             return
         }
+
+        setIsLoading(true)
 
         try {
             const response = await fetch(`/api/warehouse/${foundItem._id}`, {
@@ -49,9 +49,18 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLo
         }
     }
 
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => {
+                setError()
+            }, 7000)
+            return () => clearTimeout(timer)
+        }
+    }, [error])
+
     return (
         <>
-            {!error ? (
+            {/* {!error ? ( */}
                 <form onSubmit={handleDelete} className='space-y-4'>
                     <div className='mt-2'>
                         <label htmlFor='NameOfTheItemToDelete' className='sr-only'>
@@ -62,12 +71,13 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLo
                             placeholder='Name of the item to delete'
                             type='text'
                             value={itemName}
-                            onChange={(e) => setItemName(e.target.value)}
+                            onChange={(e) => { setItemName(e.target.value); setError() }}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none'}`}
-                            disabled={isLoading}
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
+                    {error && <div className='text-red-500'>{error}</div>}
+
                     <button
                         type='button'
                         onClick={() => setActiveForm()}
@@ -82,9 +92,9 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLo
                         Enter
                     </button>
                 </form>
-            ) : (
+            {/*  ) : (
                 <div className='text-red-500'>error: {error}</div>
-            )}
+             )} */}
         </>
     )
 }
