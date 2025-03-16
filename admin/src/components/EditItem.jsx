@@ -138,7 +138,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
-
                     {error && <div className='text-red-500'>{error}</div>}
 
                     <button
