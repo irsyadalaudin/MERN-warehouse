@@ -53,7 +53,7 @@ const AddItem = ({ setActiveForm, setWarehouse, isLoading, setIsLoading }) => {
             const data = await response.json()
 
             if (!response.ok) {
-                throw new Error(data.error || 'Error while creating new warehouse item!')
+                throw new Error(data.error || 'Error while creating new warehouse item')
             }
 
             console.log('Item has been successfully created:', data)
@@ -104,7 +104,7 @@ const AddItem = ({ setActiveForm, setWarehouse, isLoading, setIsLoading }) => {
                         <input
                             type='file'
                             id='UploadFile'
-                            onChange={(e) => setFile(e.target.files[0])}        
+                            onChange={(e) => { setFile(e.target.files[0]); setFormErrors({}) }}        
                             className='hidden'
                             disabled={isLoading}
                         />
@@ -126,7 +126,7 @@ const AddItem = ({ setActiveForm, setWarehouse, isLoading, setIsLoading }) => {
                             placeholder='Item Name'
                             type='text'
                             value={itemName}
-                            onChange={(e) => setItemName(e.target.value)}
+                            onChange={(e) => { setItemName(e.target.value); setFormErrors({}) }}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none'}`}
                             disabled={isLoading}
                         />
@@ -141,7 +141,7 @@ const AddItem = ({ setActiveForm, setWarehouse, isLoading, setIsLoading }) => {
                             placeholder='Weights (in Kgs)'
                             type='number'
                             value={weight}
-                            onChange={(e) => setWeight(e.target.value)}
+                            onChange={(e) => { setWeight(e.target.value); setFormErrors({}) }}
                             onWheel={(e) => e.target.blur()}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.weight ? 'border border-red-500' : 'border-none'}`}
                             disabled={isLoading}
@@ -157,7 +157,7 @@ const AddItem = ({ setActiveForm, setWarehouse, isLoading, setIsLoading }) => {
                             placeholder='Weight details'
                             type='text' 
                             value={weightDetails}
-                            onChange={(e) => setWeightDetails(e.target.value)}
+                            onChange={(e) => { setWeightDetails(e.target.value); setFormErrors({}) }}
                             className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                             disabled={isLoading}
                         />
@@ -171,7 +171,7 @@ const AddItem = ({ setActiveForm, setWarehouse, isLoading, setIsLoading }) => {
                             placeholder='Quantity'
                             type='number'
                             value={quantity}
-                            onChange={(e) => setQuantity(e.target.value)}
+                            onChange={(e) => { setQuantity(e.target.value); setFormErrors({}) }}
                             onWheel={(e) => e.target.blur()}
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.quantity ? 'border border-red-500' : 'border-none'}`}
                             disabled={isLoading}
