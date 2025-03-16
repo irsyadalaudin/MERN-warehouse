@@ -155,10 +155,6 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
                         Enter
                     </button>
                 </form>
-            // ) : (
-            //     <div>{error}</div>
-            // )}
-            // {isEditActive && formValues && (
 
             ) : isEditActive && formValues ? (
                 <form onSubmit={handleEdit} className='space-y-4'>
