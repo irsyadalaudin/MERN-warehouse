@@ -2,7 +2,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import ValidateForm from '../utils/ValidateForm'
 
-const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
+const DeleteItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoading }) => {
     const [itemName, setItemName] = useState('')
     const [error, setError] = useState()
     const [formErrors, setFormErrors] = useState({})
@@ -18,6 +18,8 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             setFormErrors(errors)
             return
         }
+
+        setIsLoading(true)
 
         const foundItem = warehouse.find((item) => item.itemName === itemName)
 
@@ -42,6 +44,8 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
             setActiveForm()    // TO CLOSE FORM INPUT AFTER SUCCESSFULLY DELETING ITEM
         } catch (error) {
             setError(error.message)
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -59,8 +63,8 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm }) => {
                             type='text'
                             value={itemName}
                             onChange={(e) => setItemName(e.target.value)}
-                            // className='text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none'
                             className={`text-sm w-full pl-2 py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none'}`}
+                            disabled={isLoading}
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
                     </div>
@@ -96,7 +100,9 @@ DeleteItem.propTypes = {
     setWarehouse: PropTypes.func.isRequired,
     error: PropTypes.string,
     setError: PropTypes.func.isRequired,
-    setActiveForm: PropTypes.func.isRequired
+    setActiveForm: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    setIsLoading: PropTypes.func.isRequired
 }
 
 export default DeleteItem

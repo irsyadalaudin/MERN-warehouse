@@ -75,7 +75,7 @@ const Warehouse = () => {
                     >
                         Delete Item
                     </button>
-                    {activeForm === 'delete' && <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} />}
+                    {activeForm === 'delete' && <DeleteItem warehouse={warehouse} setWarehouse={setWarehouse} setActiveForm={setActiveForm} isLoading={isLoading} setIsLoading={setIsLoading} />}
 
                     <button
                         onClick={() => setActiveForm('edit')}
