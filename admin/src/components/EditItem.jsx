@@ -25,7 +25,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
 
         // HANDLE ERROR WHEN ITEM IS NOT FOUND
         if (!foundItem) {
-            setError('item not found!')
+            setError('item not found')
             return
         }
 
@@ -83,7 +83,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
             const updatedItem = await response.json()
 
             if (!response.ok) {
-                throw new Error('error while editing warehouse item!')
+                throw new Error('error while editing warehouse item')
             }
 
             console.log('Item has been suceesfully updated:', updatedItem)
@@ -133,7 +133,7 @@ const EditItem = ({ warehouse, setWarehouse, setActiveForm, isLoading, setIsLoad
                             placeholder='Which item you want to edit'
                             type='text'
                             value={itemName}
-                            onChange={(e) => { setItemName(e.target.value); setError() }}
+                            onChange={(e) => { setItemName(e.target.value); setFormErrors({}); setError() }}
                             className={`pl-2 text-sm w-full py-2 rounded-md shadow-lg hover:shadow-xl focus:outline-none ${formErrors.itemName ? 'border border-red-500' : 'border-none' }`}
                         />
                         {formErrors.itemName && <p className='text-red-500'>{formErrors.itemName}</p>}
