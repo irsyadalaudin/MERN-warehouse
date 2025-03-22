@@ -205,7 +205,6 @@ const Warehouse = () => {
                                 className='bg-white border border-gray-200 mt-6 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1'
                             >
                                 <img
-                                    // src={item.file}
                                     // ACCESS FILE url FROM CLOUDINARY (WITH public_id AND url)
                                     src={item.file?.url}
                                     alt={item.itemName} 

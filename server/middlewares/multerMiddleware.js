@@ -1,11 +1,5 @@
 import multer from 'multer'
-import { storage, upload } from '../config/cloudinaryConfig.js'
-
-// SETUP MULTER FROM `config/multerConfig.js` AND FILE LIMIT SIZE
-/*const upload = multer({
-    storage,
-    limits: { fileSize: 10 * 1024 * 1024 },
-})*/
+import { upload } from '../config/cloudinaryConfig.js'
 
 // TO HANDLE FILE UPLOAD AND ERROR
 const multerMiddleware = (req, res, next) => {
