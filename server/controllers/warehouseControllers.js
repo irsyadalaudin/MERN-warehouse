@@ -57,16 +57,12 @@ const deleteWarehouse = async (req, res) => {
     }
 
     try {
-        // const warehouse = await Warehouse.findOneAndDelete({_id:id})
-
         // SEARCH FOR ITEMS WITH id
         const warehouse = await Warehouse.findOne({ _id: id })
 
         if (!warehouse) {
             return res.status(400).json({ message: 'no such warehouse item has been deleted!' })
-        } /*else {
-            return res.status(200).json(warehouse)
-        }*/
+        }
 
         // DELETE FILES FROM CLOUDINARY USING public_id BEFORE DELETING ITEMS FROM MONGODB IF IT EXISTS
         if (warehouse.file?.public_id) {
