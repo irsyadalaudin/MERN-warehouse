@@ -1,7 +1,6 @@
 /** GET, DELETE, POST METHOD */
 import express from 'express'
 import warehouseControllers from '../controllers/warehouseControllers.js'
-// import upload from '../config/multerConfig.js'
 import multerMiddleware from '../middlewares/multerMiddleware.js'
 
 const {
