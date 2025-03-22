@@ -33,10 +33,23 @@ const createWarehouse = async (req, res) => {
     const {itemName, quantity, weight, weightDetails} = req.body
 
     // IF A FILE IS UPLOADED, SAVE ITS path; OTHERWISE, SET FILE TO null
-    const file = req.file ? req.file.path : null
+    // const file = req.file ? req.file.path : null
 
+    // IF A FILE IS UPLOADED, SAVE ITS public_id AND url; OTHERWISE, SET FILE TO null
     try {
-        const warehouse = await Warehouse.create({itemName, quantity, weight, weightDetails, file})
+        /*
+        let fileData = null
+        if (req.file) {
+            fileData = {
+                public_id: req.file.public_id,
+                url: req.file.url
+            }
+        }*/
+        let fileData = req.file
+            ? { public_id: req.file.public_id, url: req.file.url }  // public_id, url FROM CLOUDINARY 
+            : null
+        
+        const warehouse = await Warehouse.create({itemName, quantity, weight, weightDetails, file: fileData})
         res.status(200).json(warehouse)
     } catch {
         res.status(400).json({message: 'an error occurred while crearting the warehouse item!'})

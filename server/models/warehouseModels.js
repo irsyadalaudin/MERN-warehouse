@@ -22,8 +22,14 @@ const WarehouseSchema = new Schema({
         required: true
     },
     file: {
-        type: String,
-        required: false
+        public_id: {
+            type: String,
+            requried: false
+        },
+        url: {
+            type: String,
+            required: false
+        }
     }
 }, { timestamps: true })
 
