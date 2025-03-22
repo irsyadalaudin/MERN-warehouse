@@ -1,3 +1,4 @@
+import { cloudinary } from '../config/cloudinaryConfig.js'
 import Warehouse from '../models/warehouseModels.js'
 import mongoose from 'mongoose'
 
@@ -11,20 +12,21 @@ const getWarehouses = async (req, res) => {
 const getWarehouse = async (req, res) => {
     const { id } = req.params
 
+    // CHECK IF THE PROVIDED id IS VALID
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({message: 'no warehouse item matches the id!'})
+        return res.status(404).json({ message: 'no warehouse item matches the id!' })
     }
 
     try {
         const warehouse = await Warehouse.findById(id)
 
         if (!warehouse) {
-            return res.status(400).json({message: 'no warehouse item matches the id!'})
+            return res.status(400).json({ message: 'no warehouse item matches the id!' })
         } else {
             return res.status(200).json(warehouse)
         }
     } catch {
-        res.status(500).json({message: 'an error occurred while fetching the warehouse item!'})
+        res.status(500).json({ message: 'an error occurred while fetching the warehouse item!' })
     }
 }
 
@@ -38,10 +40,10 @@ const createWarehouse = async (req, res) => {
             ? { public_id: req.file.public_id, url: req.file.url }  // public_id, url FROM CLOUDINARY 
             : null
         
-        const warehouse = await Warehouse.create({itemName, quantity, weight, weightDetails, file: fileData})
+        const warehouse = await Warehouse.create({ itemName, quantity, weight, weightDetails, file: fileData })
         res.status(200).json(warehouse)
     } catch {
-        res.status(400).json({message: 'an error occurred while crearting the warehouse item!'})
+        res.status(400).json({ message: 'an error occurred while crearting the warehouse item!' })
     }
 }
 
@@ -49,20 +51,33 @@ const createWarehouse = async (req, res) => {
 const deleteWarehouse = async (req, res) => {
     const { id } = req.params
 
+    // CHECK IF THE PROVIDED id IS VALID
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({message: 'no warehouse item matches the id!'})
+        return res.status(404).json({ message: 'no warehouse item matches the id!' })
     }
 
     try {
-        const warehouse = await Warehouse.findOneAndDelete({_id:id})
+        // const warehouse = await Warehouse.findOneAndDelete({_id:id})
+
+        // SEARCH FOR ITEMS WITH id
+        const warehouse = await Warehouse.findOne({ _id: id })
 
         if (!warehouse) {
-            return res.status(400).json({message: 'no such warehouse item has been deleted!'})
-        } else {
+            return res.status(400).json({ message: 'no such warehouse item has been deleted!' })
+        } /*else {
             return res.status(200).json(warehouse)
+        }*/
+
+        // DELETE FILES FROM CLOUDINARY USING public_id BEFORE DELETING ITEMS FROM MONGODB IF IT EXISTS
+        if (warehouse.file?.public_id) {
+            await cloudinary.v2.uploader.destroy(warehouse.file.public_id)
         }
+
+        await Warehouse.findOneAndDelete({ _id: id })
+
+        return res.status(200).json({ message: 'warehouse iteme has been deleted' })
     } catch {
-        res.status(500).json({message: 'an occurred while deleting the warehouse item!'})
+        res.status(500).json({ message: 'an occurred while deleting the warehouse item!' })
     }
 }
 
@@ -70,8 +85,9 @@ const deleteWarehouse = async (req, res) => {
 const updateWarehouse = async (req, res) => {
     const { id } = req.params
 
+    // CHECK IF THE PROVIDED id IS VALID
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: 'no warehouse item matches the id!'})
+        return res.status(404).json({ error: 'no warehouse item matches the id!' })
     }
 
     try {
@@ -91,12 +107,12 @@ const updateWarehouse = async (req, res) => {
         )
 
         if (!warehouse) {
-            return res.status(400).json({message: 'no such warehouse item has been updated!'})
+            return res.status(400).json({ message: 'no such warehouse item has been updated!' })
         } else {
             return res.status(200).json(warehouse)
         }
     } catch (error) {
-        res.status(500).json({message: 'an error occurred while updating the warehouse item!', error})
+        res.status(500).json({ message: 'an error occurred while updating the warehouse item!', error })
     }
 }
 
