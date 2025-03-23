@@ -86,28 +86,23 @@ const updateWarehouse = async (req, res) => {
         return res.status(404).json({ error: 'no warehouse item matches the id!' })
     }
 
-    // try {
-        // CHECK IF THERE ARE NEW FILES UPLOADED, SAVE ITS path; OTHERWISE, SET FILE TO null
-        // const file = req.file ? req.file.path : null
-        try {
-            let fileData = req.file
-                ? { public_id: req.file.public_id, url: req.file.url }  // public_id AND url FROM CLOUDINARY 
-                : null
-                
-            const warehouse = await Warehouse.findOneAndUpdate(
-                { _id: id },
-                {
-                    ...req.body,
-                    // IF THERE IS A NEW FILE, SET THE NEW FILE, OTHERWISE KEEP THE OLD FILE
-                    // IF THE FILE IS NULL, UNDEFINED KEEPS THE OLD FILE IN THE DB
-                    // file: file || undefined
-                    file: fileData || null
-                },
-                // TO RETURN THE LATEST DATA
-                { new: true }
-            )
-        // }
-
+    // CHECK IF THERE ARE NEW FILES UPLOADED, SAVE ITS path; OTHERWISE, SET FILE TO null
+    try {
+        let fileData = req.file
+            ? { public_id: req.file.public_id, url: req.file.url }  // public_id AND url FROM CLOUDINARY 
+            : null
+            
+        const warehouse = await Warehouse.findOneAndUpdate(
+            { _id: id },
+            {
+                ...req.body,
+                // IF THERE IS A NEW FILE, SET THE NEW FILE, OTHERWISE KEEP THE OLD FILE
+                // IF THE FILE IS NULL, KEEPS THE OLD FILE IN THE DB
+                file: fileData || null
+            },
+            // TO RETURN THE LATEST DATA
+            { new: true }
+        )
         if (!warehouse) {
             return res.status(400).json({ message: 'no such warehouse item has been updated!' })
         } else {
