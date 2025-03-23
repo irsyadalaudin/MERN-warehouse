@@ -21,7 +21,6 @@ const DeleteItem = ({ warehouse, setWarehouse, setActiveForm, setIsLoading }) =>
 
         const lowerCaseItemName = itemName.toLocaleLowerCase()
         const foundItem = warehouse.find((item) => item.itemName.toLowerCase() === lowerCaseItemName)
-        // const foundItem = warehouse.find((item) => item.itemName === itemName)
         
         if (!foundItem) {
             setError('item not found')
