@@ -226,4 +226,4 @@ const Warehouse = () => {
     )
 }
 
-export default Warehouse
+export default Warehouse 
