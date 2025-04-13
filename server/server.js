@@ -10,10 +10,18 @@ const app = express()
 
 /** MIDDLEWARE */
 app.use(express.json())
+
+/** CUSTOM MIDDLEWARE FOR HANDLING WAREHOUSE-RELATED LOGIC */
 app.use(warehouseMiddleware)
 
-/** ROUTES (REACT TO REQUEST) */
+/** ROUTES HANDLER FOR ALL REQUESTS (REACT TO REQUEST) */
 app.use('/api/warehouse', warehouseRoutes)
+
+/** REDIRECT ROOT URL */
+app.get('/', (req, res) => {
+    res.redirect('api/warehouse')
+})
+
 /** SERVES STATIC IMAGE FILES FROM THE 'public/images' DIRECTORY */
 // app.use('/images', express.static('public/images'))
 
@@ -28,5 +36,5 @@ mongoose.connect(process.env.MONGO_URI, { dbName: 'warehouse' })
 
 /** CONNECTION (LISTEN FOR REQUEST) */
 app.listen(process.env.PORT, () => {
-    console.log(`server is running on http://localhost:${process.env.PORT}`)
+    console.log(`server is running on http://localhost:${process.env.PORT}/api/warehouse`)
 })
