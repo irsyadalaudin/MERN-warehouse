@@ -32,7 +32,11 @@ const Warehouse = () => {
         const fetchWarehouseItem = async () => {
             setIsLoading(true)
             try {
-                const response = await fetch('/api/warehouse')
+                const response = await fetch('https://mern-warehouse.onrender.com/api/warehouse', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }})
 
                 if (!response.ok) {
                     throw new Error('error while fetching warehouse items!')
