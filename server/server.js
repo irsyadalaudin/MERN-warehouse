@@ -8,6 +8,12 @@ import warehouseMiddleware from './middlewares/warehouseMiddleware.js'
 
 const app = express()
 
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Contetnt-Type'],
+}))
+
 /** MIDDLEWARE */
 app.use(express.json())
 
