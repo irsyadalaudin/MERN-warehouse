@@ -9,8 +9,9 @@ import warehouseMiddleware from './middlewares/warehouseMiddleware.js'
 
 const app = express()
 
+// USING CORS MIDDLEWARE TO ALLOW REQUESTS FROM SPECIFIC DOMAINS
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://mern-warehouse.netlify.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
 }))
